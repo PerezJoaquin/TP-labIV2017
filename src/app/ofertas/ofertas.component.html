@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="btn">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+        <button class="dropdown-item" (click)="locT()">Todos</button>
+        <button class="dropdown-item" (click)="loc1()">Local 1</button>
+        <button class="dropdown-item" (click)="loc2()">Local 2</button>
+        <button class="dropdown-item" (click)="loc3()">Local 3</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let item of varOfertas" class="card">
+  <div *ngIf="item.local == local1 || item.local == local2 || item.local == local3">
+    Precio: ${{ item.precio }}<br>
+    Local: {{item.local}}<br>
+    Hasta: {{item.limite}}<br>
+    Descripcion: {{item.descripcion}}
+  </div>
+</div>
+

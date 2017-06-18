@@ -1,0 +1,7 @@
+<div style="background-color:brown;border-radius:15px;padding:15px">
+  <input type="text" [(ngModel)]="desc" placeholder="Descripción"><br><br>
+  <div style="background-color:aliceblue;width:233px;border-radius:15px">
+  <ngb-datepicker #dp [(ngModel)]="dat" (navigate)="date = $event.next"></ngb-datepicker>
+  </div><br>
+  <button class="btn btn-primary" (click)="res()">Reservar</button>
+</div>
