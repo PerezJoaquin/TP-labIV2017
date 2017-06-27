@@ -17,7 +17,7 @@ export class AppComponent {
     local:''
   };
   constructor(public router:Router){
-     if(localStorage.getItem('id') == 'null' || localStorage.getItem('id') == 'undefined'){
+     if(localStorage.getItem('id') == 'null' || localStorage.getItem('id') == 'undefined' || localStorage.getItem('id') == null){
       //alert("no hay ususario logueado");
       this.router.navigate(['/login']);
     }else{
@@ -26,7 +26,7 @@ export class AppComponent {
       this.user.tipo = localStorage.getItem('tipo');
       this.user.local = localStorage.getItem('local');
       console.log(this.user);
-      //this.router.navigate(['/hub']);
+      this.router.navigate(['/hub']);
     }
   }
 

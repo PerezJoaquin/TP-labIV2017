@@ -1,0 +1,15 @@
+<div style="background-color:#af4949;border-radius:15px;padding:15px" *ngIf="tipo == 'gerente'">
+  <!--<div ngbDropdown class="btn">
+    <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+      <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
+    </div>
+  </div>-->
+  <div *ngFor="let ltem of locales; let l = index " style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
+      Nombre:<br><input type="text" [(ngModel)]="locales[l].nombre"><br>
+      Direccion:<br><input type="text" [(ngModel)]="locales[l].direccion"><br>
+      Imagen 1:<br><input type="text" [(ngModel)]="locales[l].imagen1"><br>
+      Imagen 2:<br><input type="text" [(ngModel)]="locales[l].imagen2"><br>
+      Imagen 3:<br><input type="text" [(ngModel)]="locales[l].imagen3"><br><br>
+      <button class="btn btn-outline-secondary" (click)="guardar(l)">Guardar</button>
+  </div>
+</div>

@@ -2,6 +2,26 @@
   <input type="text" [(ngModel)]="desc" placeholder="Descripción"><br><br>
   <div style="background-color:aliceblue;width:233px;border-radius:15px">
   <ngb-datepicker #dp [(ngModel)]="dat" (navigate)="date = $event.next"></ngb-datepicker>
-  </div><br>
+  </div>
+ 
+  <div>
+  <div style="background-color:#b24747; padding:15px;border-radius:15px;width:530px;">
+    <div class="row">
+      <div class="col">
+        <div ngbDropdown class="btn">
+          <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
+          </div>
+        </div>
+      </div>
+    </div>
+    <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+      <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude"></sebm-google-map-marker>
+    </sebm-google-map>
+  </div>
+  <br> 
   <button class="btn btn-primary" (click)="res()">Reservar</button>
 </div>
+
+  

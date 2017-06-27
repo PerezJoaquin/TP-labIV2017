@@ -1,0 +1,17 @@
+<div style="background-color:#af4949;border-radius:15px;padding:15px">
+  <div *ngFor="let item of usuarios; let i = index " style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
+    
+    Usuario: {{item.usuario}}<br>
+    Nivel: {{item.tipo}}<br>
+    Estado: {{item.estado}}    
+    <div ngbDropdown class="btn">
+      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Estados</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+        <button class="dropdown-item" (click)="cambioI(i)">Inactivo</button>           
+        <button class="dropdown-item" (click)="cambioA(i)">Activo</button>           
+      </div>
+    </div>  
+    <br>
+    <button class="btn btn-outline-primary" (click)="cambiar(i)">Confirmar</button>
+  </div>
+</div>

@@ -7,11 +7,12 @@ export class OfertasService {
   constructor(public http:Http) {}
 
   traerOfertas(){
-    return this.http.get('http://localhost/pizzeria/index.php/ofertas')
+    return this.http.get('http://pizzeriaperez.esy.es/pizzeria/index.php/ofertas')
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
   }
+  
   private extraer(res:Response){
     return res.json() || {};
   }

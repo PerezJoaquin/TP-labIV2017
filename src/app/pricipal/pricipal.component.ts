@@ -1,41 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { ReservasService } from '../reservas.service';
 
 @Component({
   selector: 'app-pricipal',
   templateUrl: './pricipal.component.html',
-  styleUrls: ['./pricipal.component.css']
+  styleUrls: ['./pricipal.component.css'],
+  providers: [ReservasService]
 })
 export class PricipalComponent implements OnInit {
-  user = {
-    id:'',
-    usuario:'',
-    tipo:'',
-    local:''
-  };
-  constructor(public router:Router) {
-    /*if(localStorage.getItem('id') == 'null'){
-      alert("no hay ususario logueado");
-      this.router.navigate(['/login']);
-    }else{
-      this.user.id = localStorage.getItem('id');
-      this.user.usuario = localStorage.getItem('usuario');
-      this.user.tipo = localStorage.getItem('tipo');
-      this.user.local = localStorage.getItem('local');
-      console.log(this.user);
-    }*/
-    this.router.navigate(['/']);
-   }
+  productos;
+  ret;
+  constructor(public router:Router, public reser: ReservasService) {
+    this.reser.traerProductos()
+        .then(data =>{
+          this.productos = data;
+          console.log("productos", this.productos);
+        }).catch(err =>{
+          console.log("error", err);
+        });
+        
+  }
 
   ngOnInit() {
   }
 
-  logout(){
-    localStorage.setItem('id', null);
-    localStorage.setItem('usuario', null);
-    localStorage.setItem('tipo', null);
-    localStorage.setItem('local', null);
-    this.router.navigate(['/login']);
+  ordenar(index){
+    this.reser.guardarOpProducto(this.productos[index].id, localStorage.getItem('id'))
+      .then(data =>{
+        this.ret = data;
+        alert("Pedido exitoso");
+        console.log("op", this.ret);
+      }).catch(err =>{
+        console.log("error", err);
+      });
   }
+
 
 }

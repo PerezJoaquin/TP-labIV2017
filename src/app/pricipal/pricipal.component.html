@@ -1,9 +1,9 @@
-<!--<div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'cliente'">
-  <div style="color:azure" class="btn">LogoPizzeria[]</div>
-  <button class="btn">Ofertas</button>
-  <button class="btn">Operaciones anteriores</button>
-  <button class="btn">Reservas</button>
-  <button class="btn" (click)="logout()">Salir</button>
+<div style="background-color:#af4949;border-radius:15px;padding:15px">
+  <div *ngFor="let item of productos; let i = index " style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
+    <img src="{{item.imagen}}" style="width:100px">
+    {{item.nombre}}<br>
+    Precio: ${{ item.precio }}      
+    <br>
+    <button class="btn btn-outline-secondary" (click)="ordenar(i)">Ordenar</button>
+  </div>
 </div>
-{{user.tipo}}
-<router-outlet></router-outlet>-->

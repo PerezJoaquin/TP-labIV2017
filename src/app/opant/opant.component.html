@@ -1,0 +1,46 @@
+<div style="background-color:brown;border-radius:15px;padding:15px">
+  <div style="background-color:#af4949;border-radius:15px;padding:15px">
+    <strong style="color:aliceblue">Ofertas</strong>
+    <div *ngFor="let item of userOfer" style="color:aliceblue">
+      <div *ngFor="let jtem of ofer">
+        <div style="background-color:brown;border-radius:15px;padding:10px" *ngIf="jtem.id == item.iditem && item.tipo=='oferta'">
+          Precio: ${{ jtem.precio }}<br>
+          <div *ngFor="let ltem of locales">
+            <div *ngIf="ltem.idlocal == jtem.local">
+               Local: {{ltem.nombre}}<br>
+            </div>
+          </div>
+         
+          Hasta: {{jtem.limite}}<br>
+          Descripcion: {{jtem.descripcion}} <br>
+          Estado: {{item.estado}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background-color:#af4949;border-radius:15px;padding:15px">
+    <strong style="color:aliceblue">Productos</strong>
+    <div *ngFor="let utem of userProd" style="color:aliceblue">
+      <div *ngFor="let ptem of prod">
+        <div style="background-color:brown;border-radius:15px;padding:10px" *ngIf="ptem.id == utem.iditem && utem.tipo=='producto'">
+          <img src="{{ptem.imagen}}" style="width:100px">
+          {{ptem.nombre}}<br>
+          Precio: ${{ ptem.precio }}<br>
+          Estado: {{utem.estado}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background-color:#af4949;border-radius:15px;padding:15px">
+    <strong style="color:aliceblue">Reservas</strong>
+    <div *ngFor="let item of userRes" style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
+      Fecha: {{item.fecha}}<br>
+      <div *ngFor="let ltem of locales">
+        <div *ngIf="ltem.idlocal == item.idlocal">
+            Local: {{ltem.nombre}}<br>
+        </div>
+      </div>
+      Descripción: {{item.descripcion}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<ngb-accordion [closeOthers]="true" activeIds="static-1">
+  <ngb-panel id="static-1" title="Alta Producto">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="Nombre" [(ngModel)]="prodNom"><br>
+      <input type="text" placeholder="Precio" [(ngModel)]="prodPre"><br>
+      <input type="text" placeholder="Imagen(URL)" [(ngModel)]="prodImg"><br>
+      <button type="button" class="btn btn-primary" (click)="producto()">
+        Crear
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-2" title="Alta Cliente">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="Usuario" [(ngModel)]="usuario">
+      <input type="text" placeholder="Contraseña" [(ngModel)]="contra">
+      <button type="button" class="btn btn-primary" (click)="cliente()">
+        Crear
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-4" title="Alta Empleado" *ngIf="user.tipo == 'gerente'|| user.tipo == 'admin'">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="Usuario" [(ngModel)]="usuario">
+      <input type="text" placeholder="Contraseña" [(ngModel)]="contra">
+          <div ngbDropdown class="btn">
+            <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
+            </div>
+          </div>
+      <button type="button" class="btn btn-primary" (click)="empleado()">
+        Crear
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-5" title="Alta Pedido" *ngIf="user.tipo == 'gerente' || user.tipo == 'admin'">
+    <ng-template ngbPanelContent>
+      <div ngbDropdown class="btn">
+        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Productos</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" *ngFor="let ptem of productos; let p = index" (click)="sProducto(p)">{{ptem.nombre}}</button>           
+        </div>
+      </div>
+      <div ngbDropdown class="btn">
+        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Usuarios</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" *ngFor="let utem of usuarios; let u = index" (click)="sUsuario(u)">{{utem.usuario}}</button>           
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="pedido()">
+        Crear
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-6" title="Alta Local" *ngIf="user.tipo == 'admin'">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="Nombre" [(ngModel)]="nombre">
+      <input type="text" placeholder="Latitud" [(ngModel)]="latitud">
+      <input type="text" placeholder="Longitud" [(ngModel)]="longitud">
+      <input type="text" placeholder="Direccion" [(ngModel)]="direccion">
+      <input type="text" placeholder="Imagen 1" [(ngModel)]="imagen1">
+      <input type="text" placeholder="Imagen 2" [(ngModel)]="imagen2">
+      <input type="text" placeholder="Imagen 3" [(ngModel)]="imagen3">
+      <button type="button" class="btn btn-primary" (click)="cLocal()">
+        Crear
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-3" title="Alta Oferta">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="Precio" [(ngModel)]="oferPre"><br>
+      <input type="text" placeholder="Local" [(ngModel)]="oferLoc"><br>
+      <ngb-datepicker #dp [(ngModel)]="oferLim" (navigate)="date = $event.next">Fecha Limite</ngb-datepicker><br>
+      <input type="text" placeholder="Descripción" [(ngModel)]="oferDes"><br>
+      <button type="button" class="btn btn-primary" (click)="oferta()">
+        Crear
+      </button>
+    </ng-template>
+  </ngb-panel>
+  
+</ngb-accordion>
+

@@ -12,11 +12,6 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(public usu:UserService, public router:Router) { 
-    /**if(usu.user){
-      console.log(usu.user);
-    }else{
-      console.log("asdasdasdasd");
-    }*/
   }
   cuenta = {};
   usuario:string;
@@ -29,13 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   log(){
-    /*this.cuenta = {user: this.usuario, c: this.contra}
-    console.log(this.cuenta);*/
     this.usu.login(this.usuario, this.contra)
     .then(data =>{
       this.cuenta = data;
       console.log("success", data);
-      if(data.id != undefined){
+      if(data.estado == 'inactivo'){
+        alert("usuario bloqueado por el sistema");
+      }else if(data.id != undefined){
         console.log("login");
         localStorage.setItem('id', data.id);
         localStorage.setItem('usuario', data.usuario);

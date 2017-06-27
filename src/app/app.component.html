@@ -1,39 +1,33 @@
 <!--NAVBAR CLIENTES-->
 <div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'cliente'">
-  <div style="color:azure;width:17%" class="btn">[LogoPizzeria]</div>
+  <div style="color:azure;width:17%" class="btn" (click)="this.router.navigate(['/hub']);">[LogoPizzeria]</div>
   <button class="btn" style="width:20%" (click)="this.router.navigate(['/ofertas']);">Ofertas</button>
-  <button class="btn" style="width:20%">Operaciones anteriores</button>
+  <button class="btn" style="width:20%" (click)="this.router.navigate(['/operaciones']);">Operaciones anteriores</button>
   <button class="btn" style="width:20%" (click)="this.router.navigate(['/reservas']);">Reservas</button>
   <button class="btn" style="width:20%" (click)="logout()">Salir</button>
 </div>
 
 <!--NAVBAR EMPLEADO-->
 <div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'empleado'">
-  <div style="color:azure;width:16%" class="btn">[LogoPizzeria]</div>
-  <button class="btn" style="width:15%">Alta Producto</button>
-  <button class="btn" style="width:15%">Alta Oferta</button>
-  <button class="btn" style="width:15%">Alta Cliente</button>
-  <button class="btn" style="width:15%">Lista</button>
-  <button class="btn" style="width:15%" (click)="logout()">Salir</button>
+  <div style="color:azure;width:25%" class="btn" (click)="this.router.navigate(['/hub']);">[LogoPizzeria]</div>
+  <button class="btn" style="width:23%" (click)="this.router.navigate(['/alta']);">Alta Producto/Oferta/Cliente</button>
+  <button class="btn" style="width:23%" (click)="this.router.navigate(['/lista']);">Lista</button>
+  <button class="btn" style="width:23%" (click)="logout()">Salir</button>
 </div>
 
 <!--NAVBAR GERENTE-->
 <div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'gerente'">
-  <div style="color:azure;width:12%" class="btn">[LogoPizzeria]</div>
-  <button class="btn" style="width:12%">Alta Producto</button>
-  <button class="btn" style="width:12%">Alta Oferta</button>
-  <button class="btn" style="width:12%">Alta Cliente</button>
-  <button class="btn" style="width:12%">Alta Emnpleado</button>
-  <button class="btn" style="width:12%">Cambio Estado</button>
-  <button class="btn" style="width:12%">Local</button>
-  <button class="btn" style="width:12%" (click)="logout()">Salir</button>
+  <div style="color:azure;width:14%" class="btn" (click)="this.router.navigate(['/hub']);">[LogoPizzeria]</div>
+  <button class="btn" style="width:30%" (click)="this.router.navigate(['/alta']);">Alta Producto/Oferta/Usuario/Pedido</button>
+  <button class="btn" style="width:15%" (click)="this.router.navigate(['/listaUsuarios']);">Cambio Estado</button>
+  <button class="btn" style="width:15%" (click)="this.router.navigate(['/locales']);">Local</button>
+  <button class="btn" style="width:15%" (click)="logout()">Salir</button>
 </div>
 
 <!--NAVBAR ADMIN-->
 <div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'admin'">
-  <div style="color:azure;width:17%" class="btn">[LogoPizzeria]</div>
-  <button class="btn" style="width:20%">Crear Local</button>
-  <button class="btn" style="width:20%">Crear Usuario</button>
+  <div style="color:azure;width:17%" class="btn" (click)="this.router.navigate(['/hub']);">[LogoPizzeria]</div>
+  <button class="btn" style="width:40%" (click)="this.router.navigate(['/alta']);">Alta Usuario/Local</button>
   <button class="btn" style="width:20%">Estadisticas</button>
   <button class="btn" style="width:20%" (click)="logout()">Salir</button>
 </div>

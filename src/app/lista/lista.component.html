@@ -1,0 +1,28 @@
+<div style="background-color:#af4949;border-radius:15px;padding:15px">
+  <div *ngFor="let item of op;" style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
+    <div *ngFor="let ptem of productos;">
+     <div *ngIf="item.tipo == 'producto' && item.iditem == ptem.id">
+        Producto:<br>
+        <img src="{{ptem.imagen}}" style="width:100px">
+        {{ptem.nombre}}<br>
+        Precio: ${{ ptem.precio }}<br>
+     </div>
+    </div>
+    <div *ngFor="let otem of ofertas;">
+     <div *ngIf="item.tipo == 'oferta' && item.iditem == otem.id">
+       Oferta:<br>
+        Precio: ${{ otem.precio }}<br>
+        Local: {{otem.local}}<br>
+        Hasta: {{otem.limite}}<br>
+        Descripcion: {{otem.descripcion}} <br>
+     </div>
+    </div>
+    <br>
+    Estado:{{item.estado}}<br>
+    <div *ngFor="let utem of usuarios;">
+     <div *ngIf="item.userid == utem.id">
+        Usuario: {{ utem.usuario }}<br>
+     </div>
+    </div>
+  </div>
+</div>

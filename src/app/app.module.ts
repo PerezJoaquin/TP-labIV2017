@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -11,12 +11,26 @@ import { HttpModule } from '@angular/http';
 import { PricipalComponent } from './pricipal/pricipal.component';
 import { OfertasComponent } from './ofertas/ofertas.component';
 import { ReservaComponent } from './reserva/reserva.component';
+import { MapaComponent } from './mapa/mapa.component';
+import { AgmCoreModule } from "angular2-google-maps/core";
+import { OpantComponent } from './opant/opant.component';
+import { DirectionsMapDirective } from './directions-map.directive';
+import { AltaComponent } from './alta/alta.component';
+import { ListaComponent } from './lista/lista.component';
+import { ListausersComponent } from './listausers/listausers.component';
+import { LocalesComponent } from './locales/locales.component';
+
 
 const appRoutes:Routes = [
   {path:"login", component:LoginComponent},
   {path:"hub", component:PricipalComponent},
   {path:"ofertas", component:OfertasComponent},
-  {path:"reservas", component:ReservaComponent}
+  {path:"reservas", component:ReservaComponent},
+  {path:"operaciones", component:OpantComponent},
+  {path:"alta", component:AltaComponent},
+  {path:"lista", component:ListaComponent},
+  {path:"listaUsuarios", component:ListausersComponent},
+  {path:"locales", component:LocalesComponent}
   /*,
   { path: '',
     redirectTo: '/login',
@@ -30,13 +44,25 @@ const appRoutes:Routes = [
     LoginComponent,
     PricipalComponent,
     OfertasComponent,
-    ReservaComponent
+    ReservaComponent,
+    MapaComponent,
+    OpantComponent,
+    DirectionsMapDirective,
+    AltaComponent,
+    ListaComponent,
+    ListausersComponent,
+    LocalesComponent
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyB9P5u7jeoTduNue5REvxG2GFlJldFCUOI",
+      libraries: ["places"]
+    }),
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     NgbModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     HttpModule
   ],
   providers: [UserService],
