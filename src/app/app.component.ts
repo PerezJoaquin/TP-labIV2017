@@ -35,6 +35,8 @@ export class AppComponent {
     localStorage.setItem('usuario', null);
     localStorage.setItem('tipo', null);
     localStorage.setItem('local', null);
+    //location.reload();
+    this.router.navigate(['/']);
     location.reload();
     //this.router.navigate(['/login']);
   }

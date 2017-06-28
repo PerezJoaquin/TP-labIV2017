@@ -14,7 +14,7 @@ export class ReservasService {
   reser(fecha:string, userid:number, descripcion:string, idlocal: string){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/reservar', {fecha, userid, descripcion, idlocal})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/reservar', {fecha, userid, descripcion, idlocal}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -23,7 +23,7 @@ export class ReservasService {
   traerLocales(){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/locales')
+    return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/locales', this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -32,7 +32,7 @@ export class ReservasService {
   traerReservas(userid:string){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/reservas', {userid})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/reservas', {userid}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -41,7 +41,7 @@ export class ReservasService {
   traerOfertasuser(userid:string){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/opofer', {userid})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/opofer', {userid}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -50,7 +50,7 @@ export class ReservasService {
   guardarOpOferta(iditem:string, userid:string,){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'oferta'})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'oferta'}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -58,7 +58,7 @@ export class ReservasService {
   guardarOpProducto(iditem:string, userid:string,){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'producto'})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'producto'}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -67,7 +67,7 @@ export class ReservasService {
   traerOfertasId(id:string){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/oferta', {id})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/oferta', {id}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -85,7 +85,7 @@ export class ReservasService {
   traerOperaciones(){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/operaciones', {PH:'ph'})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/operaciones', this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -94,7 +94,7 @@ export class ReservasService {
   guardarProducto(nombre:string, precio, imagen:string){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardaprod', {nombre, precio, imagen})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardaprod', {nombre, precio, imagen}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -103,7 +103,7 @@ export class ReservasService {
   traerProductosUser(userid:string){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/opprod', {userid})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/opprod', {userid}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -112,7 +112,7 @@ export class ReservasService {
   guardarOferta(precio, local, limite, descripcion){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarof', {precio, local, limite, descripcion})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarof', {precio, local, limite, descripcion}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -124,7 +124,7 @@ export class ReservasService {
     
     return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/localmod', {id, nombre:local.nombre, 
                           direccion:local.direccion, imagen1:local.imagen1, imagen2:local.imagen2,
-                          imagen3:local.imagen3})
+                          imagen3:local.imagen3}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
@@ -133,7 +133,7 @@ export class ReservasService {
   guardarLocal(nombre, direccion, latitud, longitud, img1, img2, img3){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarlocal', {nombre, direccion, latitud, longitud, img1, img2, img3})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarlocal', {nombre, direccion, latitud, longitud, img1, img2, img3}, this.options)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);

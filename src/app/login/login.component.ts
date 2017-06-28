@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('usuario', data.usuario);
         localStorage.setItem('tipo', data.tipo);
         localStorage.setItem('local', data.local);
-        this.router.navigate(['/hub']);
+        this.router.navigate(['/']);
         location.reload();
       }else{
         alert("incorrecto");
