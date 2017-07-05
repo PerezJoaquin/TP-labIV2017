@@ -1,4 +1,4 @@
-<ngb-accordion [closeOthers]="true" activeIds="static-1">
+<!--<ngb-accordion [closeOthers]="true" activeIds="static-1" class="flat-form">
   <ngb-panel id="static-1" title="Login">
     <ng-template ngbPanelContent>
       <input type="text" placeholder="Usuario" [(ngModel)]="usuario">
@@ -25,21 +25,36 @@
       <button type="button" class="btn btn-primary btn-block" (click)="cli()">Cliente</button>
     </ng-template>
   </ngb-panel>
+</ngb-accordion>-->
+<br>
+<div class="flat-form">
+  <img src="http://i.imgur.com/48cREQe.png" style="width:360px"><br><br>
+  <ngb-accordion [closeOthers]="true" activeIds="static-1">
+  <ngb-panel id="static-1" title="Login">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="  Usuario" class="btn-block" style="border-radius:5px" [(ngModel)]="usuario">
+      <input type="password" placeholder="  Contraseña" class="btn-block" style="border-radius:5px" [(ngModel)]="contra">
+      <button type="button" class="btn btn-primary btn-block" (click)="log()">
+        LogIn
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-2" title="Registrarse">
+    <ng-template ngbPanelContent>
+      <input type="text" placeholder="  Usuario" class="btn-block" style="border-radius:5px" [(ngModel)]="usuario"><br>
+      <input type="text" placeholder="  Contraseña" class="btn-block" style="border-radius:5px" [(ngModel)]="contra"><br>
+      <button type="button" class="btn btn-primary btn-block" (click)="reg()">
+        Registrarse
+      </button>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-3" title="Botones">
+    <ng-template ngbPanelContent>
+      <button type="button" class="btn btn-primary btn-block" (click)="adm()">Administrador</button><br>
+      <button type="button" class="btn btn-primary btn-block" (click)="ger()">Encargado</button><br>
+      <button type="button" class="btn btn-primary btn-block" (click)="emp()">Empleado</button><br>
+      <button type="button" class="btn btn-primary btn-block" (click)="cli()">Cliente</button>
+    </ng-template>
+  </ngb-panel>
 </ngb-accordion>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-22
+</div>

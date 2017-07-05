@@ -17,11 +17,50 @@
       </div>
     </div>
     <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-      <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude"></sebm-google-map-marker>
+      <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" *ngIf="localElegido">
+        <sebm-google-map-info-window >
+            <!--<strong>{{localElegido.nombre}}</strong><br>
+            <strong>{{localElegido.direccion}}</strong><br>
+            <img [src]='localElegido.imagen1' style="width:30px">-->
+            <ngb-carousel >
+              <ng-template ngbSlide>
+                <img [src]='localElegido.imagen1' alt="Random first slide" style='height:175px;width:265px'>
+                <div class="carousel-caption">
+                  <div style="background-color: rgba(0,0,0,0.75);">
+                    <h3 >{{localElegido.nombre}}</h3>
+                    <p>{{localElegido.direccion}}</p>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img [src]='localElegido.imagen2' alt="Random second slide" style='height:175px;width:265px'>
+                <div class="carousel-caption">
+                  <div style="background-color: rgba(0,0,0,0.75);">
+                    <h3 >{{localElegido.nombre}}</h3>
+                    <p>{{localElegido.direccion}}</p>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img [src]='localElegido.imagen3' alt="Random third slide" style='height:175px;width:265px'>
+                <div class="carousel-caption">
+                  <div style="background-color: rgba(0,0,0,0.75);">
+                    <h3 >{{localElegido.nombre}}</h3>
+                    <p>{{localElegido.direccion}}</p>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-carousel>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+      <sebm-google-map-marker [latitude]="userLat" [longitude]="userLong"></sebm-google-map-marker>
+      <!--<sebm-google-map-directions [origin]="origen" [destination]="destino"></sebm-google-map-directions>-->
     </sebm-google-map>
   </div>
   <br> 
   <button class="btn btn-primary" (click)="res()">Reservar</button>
 </div>
+
+<button class="btn btn-primary" (click)="direct()">directions</button>
 
   

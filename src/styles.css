@@ -2,5 +2,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
 body{
-    background-color: #bc5040;
+    background-image: url("http://i.imgur.com/SnoJ5Dv.png");
+    background-repeat: repeat;
 }

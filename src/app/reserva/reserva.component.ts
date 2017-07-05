@@ -1,18 +1,19 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild, Directive, Input } from '@angular/core';
 import { ReservasService } from '../reservas.service';
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { MapsAPILoader } from 'angular2-google-maps/core';
+import { MapsAPILoader, SebmGoogleMap, GoogleMapsAPIWrapper } from 'angular2-google-maps/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import { DirectionsMapDirective } from '../directions-map.directive';
 
-
+declare var google: any;
 
 
 @Component({
   selector: 'app-reserva',
   templateUrl: './reserva.component.html',
   styleUrls: ['./reserva.component.css'],
-  providers: [ReservasService]
+  providers: [ReservasService, GoogleMapsAPIWrapper]
 })
 export class ReservaComponent implements OnInit {
   public latitude: number;
@@ -20,9 +21,11 @@ export class ReservaComponent implements OnInit {
   public userLat: number;
   public userLong: number;
   public zoom: number;
+  //this.vc.origin = { longitude: place.geometry.location.lng(), latitude: place.geometry.location.lat() }; 
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
+  //@ViewChild(DirectionsMapDirective) vc: DirectionsMapDirective;
 
   hoy;
   dat;
@@ -35,9 +38,11 @@ export class ReservaComponent implements OnInit {
   origin;
   destination;
   direcciones;
+  origen={};
+  destino={};
 
   constructor(public reservas:ReservasService, public modalService:NgbModal, public router:Router,
-              private mapsAPILoader: MapsAPILoader,
+              private mapsAPILoader: MapsAPILoader, public gmapsApi: GoogleMapsAPIWrapper,
               private ngZone: NgZone) {
     this.hoy = new Date();
     this.reservas.traerLocales()
@@ -66,10 +71,7 @@ export class ReservaComponent implements OnInit {
         this.longitude = position.coords.longitude;
         this.userLat = position.coords.latitude;
         this.userLong = position.coords.longitude;
-        /*this.origin = {lat:this.userLat, lng: this.userLong};
-        this.destination = {lat:this.longitude, lng:this.latitude};
-        console.log(this.origin);
-        console.log(this.destination);*/
+        this.origin = { longitude: Number(this.userLong), latitude: Number(this.userLat) };
         this.zoom = 12;
       });
     }
@@ -98,6 +100,18 @@ export class ReservaComponent implements OnInit {
     this.latitude = Number(this.locales[id].latitud);  
     this.longitude = Number(this.locales[id].longitud);
     this.localElegido = this.locales[id];
+    this.destination = { longitude: this.latitude, latitude: this.longitude };
     this.zoom = 16;
   }
+
+  direct(){
+    this.reservas.dire(this.userLat, this.userLong, this.latitude, this.longitude)
+    .then(data =>{
+      console.log("directions", data);
+    }).catch(err =>{
+      console.log("error directions", err);
+    });
+  }
+
+  //directions
 }

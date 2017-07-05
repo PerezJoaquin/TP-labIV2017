@@ -139,6 +139,14 @@ export class ReservasService {
     .catch(this.error);
   }
 
+  dire(usuLa, usuLo, desLa, desLo){
+    return this.http.get('https://maps.googleapis.com/maps/api/directions/json?origin='+usuLa+','+usuLo+
+    '&destination='+desLa+','+desLo+'&key=AIzaSyB9P5u7jeoTduNue5REvxG2GFlJldFCUOI')
+    .toPromise()
+    .then(this.extraer)
+    .catch(this.error);
+  }
+
   private extraer(res:Response){
     return res.json() || {};
   }

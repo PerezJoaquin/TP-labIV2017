@@ -12,8 +12,8 @@ declare var google: any;
   selector: 'sebm-google-map-directions'
 })
 export class DirectionsMapDirective {
-  @Input() origin:any ;
-  @Input() destination:any;
+  @Input() origin={longitude:-34, latitude:-36} ;
+  @Input() destination={longitude:-34, latitude:-36};
   @Input() originPlaceId:any;
   @Input() destinationPlaceId:any;
   @Input() waypoints:any;
