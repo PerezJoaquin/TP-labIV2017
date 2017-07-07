@@ -1,0 +1,31 @@
+<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <div *ngFor="let item of productos; let i = index">
+    <div class='d3' [ngStyle]="{ 'background-image': 'url(' + item.imagen + ')', 'background-size': '775px', 'background-repeat': 'no-repeat', 'background-position': 'center'}">
+      <div style="background-color:rgba(215,79,61,0.8);width:140px;border-radius:5px;padding:5px">
+        <input type="checkbox" name="" value="item.nombre" (click)="agregar(i)">{{item.nombre}}
+      </div><br>
+      <div ngbDropdown>
+        <button class="btn" id="dropdownBasic1" style="background-color:rgba(215,79,61,0.8);color:white" ngbDropdownToggle>Cantidad</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownBasic1" *ngIf="total">
+          <button class="dropdown-item" (click)="cant(i, 1)">1</button>
+          <button class="dropdown-item" (click)="cant(i, 2)">2</button>
+          <button class="dropdown-item" (click)="cant(i, 3)">3</button>
+          <button class="dropdown-item" (click)="cant(i, 4)">4</button>
+          <button class="dropdown-item" (click)="cant(i, 5)">5</button>
+          <button class="dropdown-item" (click)="cant(i, 6)">6</button>
+          <button class="dropdown-item" (click)="cant(i, 7)">7</button>
+          <button class="dropdown-item" (click)="cant(i, 8)">8</button>
+          <button class="dropdown-item" (click)="cant(i, 9)">9</button>
+          <button class="dropdown-item" (click)="cant(i, 10)">10</button>
+          <button class="dropdown-item" (click)="cant(i, 11)">11</button>
+          <button class="dropdown-item" (click)="cant(i, 12)">12</button>
+        </div>
+      </div><br><br> 
+      <!--<input class="btn-block" type="text" rows="5" placeholder="Detalles (Opcional)">-->
+    </div><br>
+  </div>
+
+  <br>
+  <button id="twitterbadge" class="btn btn-block" (click)="pedir()" style="background-color:rgb(215,79,61);color:white;border:solid;margin: 25px auto;">Pedir</button>
+</div>
+<br>

@@ -12,13 +12,13 @@ export class PricipalComponent implements OnInit {
   productos;
   ret;
   constructor(public router:Router, public reser: ReservasService) {
-    this.reser.traerProductos()
+    /*this.reser.traerProductos()
         .then(data =>{
           this.productos = data;
           console.log("productos", this.productos);
         }).catch(err =>{
           console.log("error", err);
-        });
+        });*/
         
   }
 

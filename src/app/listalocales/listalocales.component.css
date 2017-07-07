@@ -1,0 +1,35 @@
+.d1{
+    width:580px;height:400px;
+}
+
+.d2{
+    /*width:48%;
+    height:62%;*/
+    /*width:615px;
+    height:446px;*/
+    width:580px;
+    height:400px;
+    float:left;
+    position:relative;
+    left:3%
+}
+
+.sebm-google-map-container {
+    width:580px;
+    height:400px;
+    /*float:left;
+    position:relative;
+    left:3%*/
+}
+
+.d3{
+    color:aliceblue;
+    background-color:rgba(183,48,30,0.80);
+    border-radius:15px;
+    padding:10px;
+    border-style:dotted;
+    width:607px;
+    float:left;
+    position:relative;
+    left:1.5%
+}

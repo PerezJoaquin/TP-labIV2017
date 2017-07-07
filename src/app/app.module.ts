@@ -19,6 +19,11 @@ import { AltaComponent } from './alta/alta.component';
 import { ListaComponent } from './lista/lista.component';
 import { ListausersComponent } from './listausers/listausers.component';
 import { LocalesComponent } from './locales/locales.component';
+import { ListalocalesComponent } from './listalocales/listalocales.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
 
 
 const appRoutes:Routes = [
@@ -30,7 +35,9 @@ const appRoutes:Routes = [
   {path:"alta", component:AltaComponent},
   {path:"lista", component:ListaComponent},
   {path:"listaUsuarios", component:ListausersComponent},
-  {path:"locales", component:LocalesComponent}
+  {path:"altalocales", component:LocalesComponent},
+  {path:"locales", component:ListalocalesComponent},
+  {path:"pedidos", component:PedidosComponent}
   /*,
   { path: '',
     redirectTo: '/login',
@@ -51,7 +58,9 @@ const appRoutes:Routes = [
     AltaComponent,
     ListaComponent,
     ListausersComponent,
-    LocalesComponent
+    LocalesComponent,
+    ListalocalesComponent,
+    PedidosComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -63,7 +72,9 @@ const appRoutes:Routes = [
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

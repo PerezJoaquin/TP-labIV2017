@@ -1,0 +1,23 @@
+.d1{
+    width:48%;
+    height:62%;
+    background-color:#B7301E;
+    border-radius:5px;
+    color:white;
+    padding:10px 10px 10px 10px;
+    float:left;
+    position:relative;
+    left:1.5%
+}
+
+.d2{
+    width:48%;
+    height:62%;
+    background-color:#B7301E;
+    border-radius:5px;
+    color:white;
+    padding:10px 10px 10px 10px;
+    float:left;
+    position:relative;
+    left:3%
+}

@@ -1,7 +1,7 @@
 <!--NAVBAR CLIENTES-->
-<div style="background-color:firebrick;" *ngIf="user.tipo == 'cliente'">
-  <div style="color:azure;width:17%" class="btn" (click)="this.router.navigate(['/']);"><!--[LogoPizzeria]-->
-    <img src="http://i.imgur.com/62geYWH.png" style="width:100%">
+<div style="background-color:#B7301E;" *ngIf="user.tipo == 'cliente'">
+  <div style="color:azure;width:17%" class="btn" (click)="this.router.navigate(['/hub']);"><!--[LogoPizzeria]-->
+    <img src="http://i.imgur.com/IrUGhoO.png" style="width:100%">
   </div>
   <button class="btn" style="width:20%;height:100%;" (click)="this.router.navigate(['/ofertas']);">Ofertas</button>
   <button class="btn" style="width:20%" (click)="this.router.navigate(['/operaciones']);">Operaciones anteriores</button>
@@ -10,16 +10,20 @@
 </div>
 
 <!--NAVBAR EMPLEADO-->
-<div style="background-color:firebrick; padding:7px;border-radius:0px 0px 15px 15px" *ngIf="user.tipo == 'empleado'">
-  <div style="color:azure;width:25%" class="btn" (click)="this.router.navigate(['/']);">[LogoPizzeria]</div>
+<div style="background-color:#B7301E; padding:7px;border-radius:0px 0px 15px 15px" *ngIf="user.tipo == 'empleado'">
+  <div style="color:azure;width:25%" class="btn" (click)="this.router.navigate(['/hub']);"><!--[LogoPizzeria]-->
+    <img src="http://i.imgur.com/IrUGhoO.png" style="width:100%">
+  </div>
   <button class="btn" style="width:23%" (click)="this.router.navigate(['/alta']);">Alta Producto/Oferta/Cliente</button>
   <button class="btn" style="width:23%" (click)="this.router.navigate(['/lista']);">Lista</button>
   <button class="btn" style="width:23%" (click)="logout()">Salir</button>
 </div>
 
 <!--NAVBAR GERENTE-->
-<div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'gerente'">
-  <div style="color:azure;width:14%" class="btn" (click)="this.router.navigate(['/']);">[LogoPizzeria]</div>
+<div style="background-color:#B7301E; padding:7px;border-radius:15px" *ngIf="user.tipo == 'gerente'">
+  <div style="color:azure;width:14%" class="btn" (click)="this.router.navigate(['/hub']);"><!--[LogoPizzeria]-->
+    <img src="http://i.imgur.com/IrUGhoO.png" style="width:100%">
+  </div>
   <button class="btn" style="width:30%" (click)="this.router.navigate(['/alta']);">Alta Producto/Oferta/Usuario/Pedido</button>
   <button class="btn" style="width:15%" (click)="this.router.navigate(['/listaUsuarios']);">Cambio Estado</button>
   <button class="btn" style="width:15%" (click)="this.router.navigate(['/locales']);">Local</button>
@@ -27,8 +31,10 @@
 </div>
 
 <!--NAVBAR ADMIN-->
-<div style="background-color:firebrick; padding:7px;border-radius:15px" *ngIf="user.tipo == 'admin'">
-  <div style="color:azure;width:17%" class="btn" (click)="this.router.navigate(['/']);">[LogoPizzeria]</div>
+<div style="background-color:#B7301E; padding:7px;border-radius:15px" *ngIf="user.tipo == 'admin'">
+  <div style="color:azure;width:17%" class="btn" (click)="this.router.navigate(['/hub']);"><!--[LogoPizzeria]-->
+    <img src="http://i.imgur.com/IrUGhoO.png" style="width:100%">
+  </div>
   <button class="btn" style="width:40%" (click)="this.router.navigate(['/alta']);">Alta Usuario/Local</button>
   <button class="btn" style="width:20%">Estadisticas</button>
   <button class="btn" style="width:20%" (click)="logout()">Salir</button>

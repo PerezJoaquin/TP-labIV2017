@@ -1,0 +1,50 @@
+<div *ngFor="let ltem of locales; let l = index"  >
+    <div class="d3">
+      <ngb-carousel class="d1">
+        <ng-template ngbSlide>
+          <sebm-google-map [latitude]="Num(ltem.latitud)" [longitude]="Num(ltem.longitud)" [scrollwheel]="false" [zoom]="zoom" >
+            <sebm-google-map-marker [latitude]="Num(ltem.latitud)" [longitude]="Num(ltem.longitud)">
+              <sebm-google-map-info-window>
+                <h3 style="color:black">  {{ltem.nombre}}</h3>
+                <p style="color:black">{{ltem.direccion}}</p>
+              </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+          </sebm-google-map>
+          <div class="carousel-caption">
+            <div style="background-color: rgba(0,0,0,0.75);">
+              <h3 >{{ltem.nombre}}</h3>
+              <p>{{ltem.direccion}}</p>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]='ltem.imagen1' alt="Random first slide" style="width:580px;height:400px;">
+          <div class="carousel-caption">
+            <div style="background-color: rgba(0,0,0,0.75);">
+              <h3 >{{ltem.nombre}}</h3>
+              <p>{{ltem.direccion}}</p>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]='ltem.imagen2' alt="Random second slide" style='width:580px;height:400px;'>
+          <div class="carousel-caption">
+            <div style="background-color: rgba(0,0,0,0.75);">
+              <h3 >{{ltem.nombre}}</h3>
+              <p>{{ltem.direccion}}</p>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]='ltem.imagen3' alt="Random third slide" style='width:580px;height:400px;'>
+          <div class="carousel-caption">
+            <div style="background-color: rgba(0,0,0,0.75);">
+              <h3 >{{ltem.nombre}}</h3>
+              <p>{{ltem.direccion}}</p>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+      
+  </div>
