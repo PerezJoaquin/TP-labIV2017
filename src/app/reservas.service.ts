@@ -47,18 +47,16 @@ export class ReservasService {
     .catch(this.error);
   }
 
-  guardarOpOferta(iditem:string, userid:string,){
+  guardarOpOferta(iditem:string, userid:string, lat, long){
     this.headers = new Headers({ 'Content-Type': 'application/json' });
     this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'oferta'})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'oferta', lat, long})
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
   }
-  guardarOpProducto(iditem:string, userid:string,){
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
-    this.options = new RequestOptions({ headers: this.headers });
-    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'producto'})
+  guardarOpProducto(iditem:string, userid:string, fireid:string, lat:string, long:string){
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/guardarop', {iditem, userid, tipo:'producto', fireid, lat, long})
     .toPromise()
     .then(this.extraer)
     .catch(this.error);

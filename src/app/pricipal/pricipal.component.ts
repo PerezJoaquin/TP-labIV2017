@@ -25,7 +25,7 @@ export class PricipalComponent implements OnInit {
   ngOnInit() {
   }
 
-  ordenar(index){
+  /*ordenar(index){
     this.reser.guardarOpProducto(this.productos[index].id, localStorage.getItem('id'))
       .then(data =>{
         this.ret = data;
@@ -34,7 +34,7 @@ export class PricipalComponent implements OnInit {
       }).catch(err =>{
         console.log("error", err);
       });
-  }
+  }*/
 
 
 }

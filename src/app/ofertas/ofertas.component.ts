@@ -51,13 +51,13 @@ export class OfertasComponent implements OnInit {
   }
 
   ordenar(index){
-    this.reser.guardarOpOferta(this.varOfertas[index].id, localStorage.getItem('id'))
+    /*this.reser.guardarOpOferta(this.varOfertas[index].id, localStorage.getItem('id'))
       .then(data =>{
         this.ret = data;
         console.log("op", this.ret);
       }).catch(err =>{
         console.log("error", err);
-      });
+      });*/
   }
 
 }

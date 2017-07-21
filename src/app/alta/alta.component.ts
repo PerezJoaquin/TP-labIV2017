@@ -125,13 +125,13 @@ export class AltaComponent implements OnInit {
   }
 
   pedido(){
-    this.reser.guardarOpProducto(this.sProd.id, this.sUser.id)
+    /*this.reser.guardarOpProducto(this.sProd.id, this.sUser.id)
       .then(data =>{
         this.res = data;
         console.log("op", this.res);
       }).catch(err =>{
         console.log("error", err);
-      });
+      });*/
   }
 
   cLocal(){
