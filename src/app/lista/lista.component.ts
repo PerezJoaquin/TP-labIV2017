@@ -14,6 +14,7 @@ export class ListaComponent implements OnInit {
   usuarios;
   ofertas;
   productos;
+  fireProd;
 
   constructor(public usu: UserService, public ofer:OfertasService, public reser:ReservasService) { 
     this.reser.traerProductos()
@@ -47,10 +48,23 @@ export class ListaComponent implements OnInit {
       }).catch(err =>{
         console.log("error", err);
       });
+    
+    this.reser.traerTodosFireProd()
+      .then(data =>{
+        this.fireProd = data;
+        console.log("fireprod", this.fireProd);
+      }).catch(err =>{
+        console.log("error", err);
+      });
+
 
   }
 
   ngOnInit() {
+  }
+
+  estado(ind, est){
+    this.op[ind].estado = est;
   }
 
 }

@@ -11,10 +11,11 @@ import { ReservasService } from '../reservas.service';
 export class OfertasComponent implements OnInit {
 
   varOfertas;
-  local1 = '1';
-  local2 = '2';
-  local3 = '3';
+  sloca = {nombre: "Todos los Locales"};
+  locales;
   ret;
+  lat;
+  long;
 
   constructor(public ofer:OfertasService, public reser:ReservasService) { 
     this.ofer.traerOfertas()
@@ -24,30 +25,24 @@ export class OfertasComponent implements OnInit {
     }).catch(err =>{
       console.log("error", err);
     });
+    this.reser.traerLocales()
+      .then(data =>{
+        this.locales = data;
+        console.log("Locales", this.locales);
+      }).catch(err =>{
+        console.log("error", err);
+      });
   }
 
   ngOnInit() {
   }
 
-  locT(){
-    this.local1 = '1';
-    this.local2 = '2';
-    this.local3 = '3';
-  }
-  loc1(){
-    this.local1 = '1';
-    this.local2 = '1';
-    this.local3 = '1';
-  }
-  loc2(){
-    this.local1 = '2';
-    this.local2 = '2';
-    this.local3 = '2';
-  }
-  loc3(){
-    this.local1 = '3';
-    this.local2 = '3';
-    this.local3 = '3';
+  sLocal(id){
+    if(id == "todos"){
+      this.sloca.nombre = "Todos los Locales";
+    }else{
+      this.sloca = this.locales[id];
+    }
   }
 
   ordenar(index){

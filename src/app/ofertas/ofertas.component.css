@@ -1,0 +1,9 @@
+.d3{
+    color:aliceblue;
+    background-color:rgba(183,48,30,0.7);
+    border-radius:15px;
+    padding:10px;
+    /*width:775px;
+    margin: 25px auto;*/
+    border-style:dotted;
+}

@@ -1,4 +1,24 @@
-<div class="flat-form">
+<div class="flat-form">  
+  <ngb-accordion [closeOthers]="true" activeIds="static-1">
+    <ngb-panel id="static-1" title="Productos">
+      <ng-template ngbPanelContent>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-2" title="Ofertas">
+      <ng-template ngbPanelContent>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-3" title="Usuarios">
+      <ng-template ngbPanelContent>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="static-4" title="Locales">
+      <ng-template ngbPanelContent>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>
+<!--<div class="flat-form">
   <ngb-accordion [closeOthers]="true" activeIds="static-1">
     <ngb-panel id="static-1" title="Alta Producto">
       <ng-template ngbPanelContent>
@@ -34,25 +54,6 @@
         </button>
       </ng-template>
     </ngb-panel>
-    <!--<ngb-panel id="static-5" title="Alta Pedido" *ngIf="user.tipo == 'gerente' || user.tipo == 'admin'">
-      <ng-template ngbPanelContent>
-        <div ngbDropdown class="btn">
-          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Productos</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-            <button class="dropdown-item" *ngFor="let ptem of productos; let p = index" (click)="sProducto(p)">{{ptem.nombre}}</button>           
-          </div>
-        </div>
-        <div ngbDropdown class="btn">
-          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Usuarios</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-            <button class="dropdown-item" *ngFor="let utem of usuarios; let u = index" (click)="sUsuario(u)">{{utem.usuario}}</button>           
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary" (click)="pedido()">
-          Crear
-        </button>
-      </ng-template>
-    </ngb-panel>-->
     <ngb-panel id="static-6" title="Alta Local" *ngIf="user.tipo == 'admin'">
       <ng-template ngbPanelContent>
         <input type="text" placeholder="Nombre" [(ngModel)]="nombre" class="d3">
@@ -80,4 +81,4 @@
     </ngb-panel>
     
   </ngb-accordion>
-</div>
+</div>-->

@@ -1,5 +1,5 @@
-<div style="background-color:#af4949;border-radius:15px;padding:15px">
-  <div *ngFor="let item of op;" style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
+<!--<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <div *ngFor="let item of op;" style="color:aliceblue;background-color:rgba(183,48,30,1);border-radius:15px;padding:10px">
     <div *ngFor="let ptem of productos;">
      <div *ngIf="item.tipo == 'producto' && item.iditem == ptem.id">
         Producto:<br>
@@ -25,4 +25,49 @@
      </div>
     </div>
   </div>
+</div>-->
+
+<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <div style="background-color:rgba(215,79,61,0.7);border-radius:15px;padding:15px;border:solid;color:white">
+    <strong style="color:aliceblue">Pedidos</strong><br><br>
+    <div *ngFor="let otem of op">
+      <!--<div *ngFor="let ftem of fireProd" [ngStyle]="{ 'background-image': 'url(' + fireProd[otem.userid][otem.fireid].local.imagen1 + ')', 'background-size': '100%', 'background-repeat': 'repeat', 'background-position': 'center', 'color':'white'}" class="d3">-->
+      <div *ngFor="let ftem of fireProd[otem.userid]">
+          <div *ngIf="ftem.key == op.fireid">
+            <!--<div *ngFor="let ftem of fireProd[utem.fireid].pedidos" style="background-color:rgba(32,32,32,0.65)"  class="d3">
+                Producto: {{ftem.nombre}}<br>
+                Precio: ${{ ftem.precio }}<br>     
+                Cantidad: {{ftem.cantidad}}
+            </div>
+            <div class="d3" style="background-color:rgba(32,32,32,0.65);position:relative;top:5px">
+              Local: {{fireProd[utem.fireid].local.nombre}}<br>
+              Dirección: {{fireProd[utem.fireid].local.direccion}}<br>
+              Total: ${{fireProd[utem.fireid].precio}}
+            </div>-->
+            {{ftem.cantidad}}
+          </div>
+      </div>
+    </div>
+  </div>
+  <!--<div style="background-color:rgba(215,79,61,0.7);border-radius:15px;padding:15px;border:solid;color:white;position:relative;top:3px">
+    <strong style="color:aliceblue">Ofertas</strong><br>
+    <div *ngFor="let item of userOfer" style="color:aliceblue">
+      <div *ngFor="let jtem of ofer">
+        <div class="d3" *ngIf="jtem.id == item.iditem && item.tipo=='oferta'" [ngStyle]="{ 'background-image': 'url(' + locales[jtem.local-1].imagen1 + ')', 'background-size': '100%', 'background-repeat': 'no-repeat', 'background-position': 'center', 'color':'white'}">
+          <div style="background-color:rgba(32,32,32,0.65);border:none" class="d3">
+            Precio: ${{ jtem.precio }}<br>
+            <div *ngFor="let ltem of locales">
+              <div *ngIf="ltem.idlocal == jtem.local">
+                Local: {{ltem.nombre}}<br>
+              </div>
+            </div>
+          
+            Hasta: {{jtem.limite}}<br>
+            Descripcion: {{jtem.descripcion}} <br>
+            Estado: {{item.estado}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
 </div>

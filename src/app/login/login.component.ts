@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { PricipalComponent } from '../pricipal/pricipal.component';
 import {Router} from '@angular/router';
+import { AuthHttp, AuthConfig, JwtHelper } from 'angular2-jwt';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [UserService]
+  providers: [UserService, JwtHelper ]
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public usu:UserService, public router:Router) { 
+  constructor(public usu:UserService, public router:Router, public jwt:JwtHelper ) { 
   }
   cuenta = {};
   usuario:string;
@@ -27,15 +28,17 @@ export class LoginComponent implements OnInit {
     this.usu.login(this.usuario, this.contra)
     .then(data =>{
       this.cuenta = data;
-      console.log("success", data);
+      //console.log("success", data);
       if(data.estado == 'inactivo'){
-        alert("usuario bloqueado por el sistema");
-      }else if(data.id != undefined){
-        console.log("login");
+        alert("Usuario bloqueado por el sistema");
+      }else if(data.id != null){
+        //console.log("login");
         localStorage.setItem('id', data.id);
-        localStorage.setItem('usuario', data.usuario);
+        localStorage.setItem('token', data.tok);
         localStorage.setItem('tipo', data.tipo);
-        localStorage.setItem('local', data.local);
+        console.log(
+          this.jwt.decodeToken(data.tok)
+        );
         this.router.navigate(['/']);
         location.reload();
       }else{

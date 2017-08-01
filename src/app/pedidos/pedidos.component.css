@@ -19,4 +19,14 @@
     background-size: 45px;
     background-position: center;
     text-indent: -9999px;
+    animation: createBox 1s;
+}
+
+@keyframes createBox {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }

@@ -32,28 +32,28 @@
   <ngb-accordion [closeOthers]="true" activeIds="static-1">
   <ngb-panel id="static-1" title="Login">
     <ng-template ngbPanelContent>
-      <input type="text" placeholder="  Usuario" class="btn-block" style="border-radius:5px" [(ngModel)]="usuario">
-      <input type="password" placeholder="  Contraseña" class="btn-block" style="border-radius:5px" [(ngModel)]="contra">
-      <button type="button" class="btn btn-primary btn-block" (click)="log()">
+      <input type="text" placeholder="Usuario" class="d3" style="border-radius:5px" [(ngModel)]="usuario">
+      <input type="password" placeholder="Contraseña" class="d3" style="border-radius:5px" [(ngModel)]="contra">
+      <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="log()">
         LogIn
       </button>
     </ng-template>
   </ngb-panel>
   <ngb-panel id="static-2" title="Registrarse">
     <ng-template ngbPanelContent>
-      <input type="text" placeholder="  Usuario" class="btn-block" style="border-radius:5px" [(ngModel)]="usuario"><br>
-      <input type="text" placeholder="  Contraseña" class="btn-block" style="border-radius:5px" [(ngModel)]="contra"><br>
-      <button type="button" class="btn btn-primary btn-block" (click)="reg()">
+      <input type="text" placeholder="  Usuario" class="d3" style="border-radius:5px" [(ngModel)]="usuario"><br>
+      <input type="text" placeholder="  Contraseña" class="d3" style="border-radius:5px" [(ngModel)]="contra"><br>
+      <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="reg()">
         Registrarse
       </button>
     </ng-template>
   </ngb-panel>
   <ngb-panel id="static-3" title="Botones">
     <ng-template ngbPanelContent>
-      <button type="button" class="btn btn-primary btn-block" (click)="adm()">Administrador</button><br>
-      <button type="button" class="btn btn-primary btn-block" (click)="ger()">Encargado</button><br>
-      <button type="button" class="btn btn-primary btn-block" (click)="emp()">Empleado</button><br>
-      <button type="button" class="btn btn-primary btn-block" (click)="cli()">Cliente</button>
+      <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="adm()">Administrador</button><br><br>
+      <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="ger()">Encargado</button><br><br>
+      <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="emp()">Empleado</button><br><br>
+      <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="cli()">Cliente</button>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>

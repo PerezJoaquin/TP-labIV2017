@@ -2,3 +2,47 @@
       height: 281px;
       width: 500px;
     }
+
+.d1{
+    width:530px;
+    height:380px;
+    background-color:rgba(183,48,30,0.80);
+    border-radius:5px;
+    color:white;
+    padding:10px 10px 10px 10px;
+    float:left;
+    position:relative;
+    left:0%
+}
+
+.d2{
+    width:500px;
+    height:380px;
+    background-color:rgba(183,48,30,0.80);
+    border-radius:5px;
+    color:white;
+    padding:10px 10px 10px 10px;
+    float:left;
+    position:relative;
+    left:2%
+}
+
+.d3{
+    color:aliceblue;
+    /*background-color:rgba(183,48,30,0.80);*/
+    border-radius:15px;
+    padding:10px;
+    width:775px;
+    margin: 25px auto;
+    border-style:dotted;
+}
+
+.d4{
+    color:aliceblue;
+    background-color:rgba(183,48,30,0.7);
+    border-radius:15px;
+    padding:10px;
+    /*width:775px;
+    margin: 25px auto;*/
+    border-style:dotted;
+}

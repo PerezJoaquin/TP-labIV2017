@@ -7,6 +7,7 @@ export class OfertasService {
   constructor(public http:Http) {}
 
   traerOfertas(){
+    //return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/ofertas')
     return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/ofertas')
     .toPromise()
     .then(this.extraer)

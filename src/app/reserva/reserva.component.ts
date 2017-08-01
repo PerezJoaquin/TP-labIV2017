@@ -45,14 +45,15 @@ export class ReservaComponent implements OnInit {
               private mapsAPILoader: MapsAPILoader, public gmapsApi: GoogleMapsAPIWrapper,
               private ngZone: NgZone) {
     this.hoy = new Date();
-    this.reservas.traerLocales()
+      this.reservas.traerLocales()
         .then(data =>{
           this.locales = data;
+          this.localElegido = this.locales[0];
           console.log("Locales", this.locales);
         }).catch(err =>{
           console.log("error", err);
         });
-        
+      
    }
 
   ngOnInit() {
@@ -78,20 +79,26 @@ export class ReservaComponent implements OnInit {
   }
 
   res(){
-    if(this.hoy.getFullYear() == this.dat.year && (this.hoy.getMonth()+1) == this.dat.month && 
-    this.dat.day <= (this.hoy.getDate()+5) && this.dat.day >= (this.hoy.getDate()+2) && this.dat.day >= this.hoy.getDate()){
-      this.fecha = this.dat.year + "-" + this.dat.month + "-" + this.dat.day;
-      this.userId = localStorage.getItem('id');
-      this.reservas.reser(this.fecha, this.userId, this.desc, this.localElegido.idlocal)
-        .then(data =>{
-          alert("Reserva existosa");
-          this.router.navigate(['/hub']);
-          console.log("success", data);
-        }).catch(err =>{
-          console.log("error", err);
-        });
-    }else{
-      alert("La fecha de reserva seleccionada debe ser entre dos y cinco días desde la fecha actual");
+    try{
+      if(this.hoy.getFullYear() == this.dat.year && (this.hoy.getMonth()+1) == this.dat.month && 
+      this.dat.day <= (this.hoy.getDate()+5) && this.dat.day >= (this.hoy.getDate()+2) && this.dat.day >= this.hoy.getDate()){
+        this.fecha = this.dat.year + "-" + this.dat.month + "-" + this.dat.day;
+        this.userId = localStorage.getItem('id');
+        this.reservas.reser(this.fecha, this.userId, this.desc, this.localElegido.idlocal)
+          .then(data =>{
+            alert("Reserva existosa");
+            this.router.navigate(['/hub']);
+            console.log("success", data);
+          }).catch(err =>{
+            console.log("error", err);
+          });
+        alert("Reserva Exitosa");
+      }else{
+        alert("La fecha de reserva seleccionada debe ser entre dos y cinco días desde la fecha actual");
+      }
+    }catch(err){
+      alert("Se produjo un error. Vuelva a ingresar los datos e intente otra vez");
+      console.log("ERROR", err);
     }
   }
   

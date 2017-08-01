@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservasService } from '../reservas.service';
 import { OfertasService } from '../ofertas.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-opant',
@@ -16,8 +18,10 @@ export class OpantComponent implements OnInit {
   ofer;
   prod;
   locales;
+  fireProd;
 
-  constructor(public reservas: ReservasService, public ofertas: OfertasService) {
+  constructor(public reservas: ReservasService, public ofertas: OfertasService, 
+    public db: AngularFireDatabase) {
     this.reservas.traerReservas(localStorage.getItem('id'))
       .then(data =>{
         this.userRes = data;
@@ -63,11 +67,16 @@ export class OpantComponent implements OnInit {
       }).catch(err =>{
         console.log("error", err);
       });
+
+      this.reservas.traerFireProd()
+      .then(data =>{
+        this.fireProd = data;
+        console.log("fireprod", this.fireProd);
+      }).catch(err =>{
+        console.log("error", err);
+      });
   }
 
   ngOnInit() {
   }
-
-
-
 }

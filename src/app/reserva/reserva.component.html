@@ -1,11 +1,16 @@
-<div style="background-color:brown;border-radius:15px;padding:15px">
-  <input type="text" [(ngModel)]="desc" placeholder="Descripción"><br><br>
-  <div style="background-color:aliceblue;width:233px;border-radius:15px">
-  <ngb-datepicker #dp [(ngModel)]="dat" (navigate)="date = $event.next"></ngb-datepicker>
-  </div>
- 
+<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <div class="d3" style="background-color:rgba(215,79,61,0.7)">  
+    <div class="d3" style="border:none;padding:0px">
+      
+    </div>
+    <div class="d3" style="background-color:aliceblue;width:245px;border-radius:15px">
+      <input type="text" style="width:220px;color:black;padding:10px;border-style:dotted;border-radius:15px;" [(ngModel)]="desc" placeholder="Descripción">
+      <ngb-datepicker #dp [(ngModel)]="dat" (navigate)="date = $event.next"></ngb-datepicker>
+    </div>
+  
+
   <div>
-  <div style="background-color:#b24747; padding:15px;border-radius:15px;width:530px;">
+  <div style="background-color:rgba(183,48,30,0.90); padding:15px;border-radius:15px;width:530px;" class="d3">
     <div class="row">
       <div class="col">
         <div ngbDropdown class="btn">
@@ -19,9 +24,6 @@
     <sebm-google-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
       <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude" *ngIf="localElegido">
         <sebm-google-map-info-window >
-            <!--<strong>{{localElegido.nombre}}</strong><br>
-            <strong>{{localElegido.direccion}}</strong><br>
-            <img [src]='localElegido.imagen1' style="width:30px">-->
             <ngb-carousel >
               <ng-template ngbSlide>
                 <img [src]='localElegido.imagen1' alt="Random first slide" style='height:175px;width:265px'>
@@ -54,11 +56,11 @@
         </sebm-google-map-info-window>
       </sebm-google-map-marker>
       <sebm-google-map-marker [latitude]="userLat" [longitude]="userLong"></sebm-google-map-marker>
-      <!--<sebm-google-map-directions [origin]="origen" [destination]="destino"></sebm-google-map-directions>-->
     </sebm-google-map>
   </div>
-  <br> 
-  <button class="btn btn-primary" (click)="res()">Reservar</button>
+  <br>
+    <button class="btn d4" style="border-style:solid;width:100%;background-color:rgba(183,48,30,1);color:white;" (click)="res()">Reservar</button>
+  </div>
 </div>
 
   

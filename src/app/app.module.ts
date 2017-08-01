@@ -24,6 +24,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import { ModComponent } from './mod/mod.component';
+
 
 
 const appRoutes:Routes = [
@@ -37,7 +39,8 @@ const appRoutes:Routes = [
   {path:"listaUsuarios", component:ListausersComponent},
   {path:"altalocales", component:LocalesComponent},
   {path:"locales", component:ListalocalesComponent},
-  {path:"pedidos", component:PedidosComponent}
+  {path:"pedidos", component:PedidosComponent},
+  {path:"mod", component:ModComponent}
   /*,
   { path: '',
     redirectTo: '/login',
@@ -60,7 +63,8 @@ const appRoutes:Routes = [
     ListausersComponent,
     LocalesComponent,
     ListalocalesComponent,
-    PedidosComponent
+    PedidosComponent,
+    ModComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

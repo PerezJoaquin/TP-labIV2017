@@ -10,34 +10,27 @@ import {Router} from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
-   user = {
-    id:'',
-    usuario:'',
-    tipo:'',
-    local:''
-  };
+  tipo;
+
   constructor(public router:Router){
-     if(localStorage.getItem('id') == 'null' || localStorage.getItem('id') == 'undefined' || localStorage.getItem('id') == null){
+     if(localStorage.getItem('token') == 'null' || localStorage.getItem('token') == 'undefined' || localStorage.getItem('token') == null){
       //alert("no hay ususario logueado");
       this.router.navigate(['/login']);
     }else{
-      this.user.id = localStorage.getItem('id');
-      this.user.usuario = localStorage.getItem('usuario');
-      this.user.tipo = localStorage.getItem('tipo');
-      this.user.local = localStorage.getItem('local');
-      console.log(this.user);
       this.router.navigate(['/hub']);
+      this.tipo = this.comp();
     }
   }
 
   logout(){
     localStorage.setItem('id', null);
-    localStorage.setItem('usuario', null);
+    localStorage.setItem('token', null);
     localStorage.setItem('tipo', null);
-    localStorage.setItem('local', null);
-    //location.reload();
     this.router.navigate(['/']);
     location.reload();
-    //this.router.navigate(['/login']);
+  }
+
+  comp(){
+    return localStorage.getItem('tipo');
   }
 }

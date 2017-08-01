@@ -18,11 +18,12 @@ export class PedidosComponent implements OnInit {
   coun;
   len;
   precio;
-  total={pedidos: new Array(),precio:0, gorcliente:null};
+  total={pedidos: new Array(),precio:0, local:null, key:null, userid:null};
   fire;
   key = "au";
   lat;
   long;
+  locales;
 
 
   constructor(public router:Router, public reser: ReservasService, public db: AngularFireDatabase,
@@ -36,8 +37,8 @@ export class PedidosComponent implements OnInit {
     this.coun = 0;
     
 
-    this.fire = db.object('https://pizzeria-1533a.firebaseio.com/' + localStorage.getItem('id')+'/'+this.key);
-    console.log(this.fire);
+    //this.fire = db.object('https://pizzeria-1533a.firebaseio.com/' + localStorage.getItem('id')+'/'+this.key);
+    //console.log(this.fire);
     this.setCurrentPosition();
   }
 
@@ -50,17 +51,16 @@ export class PedidosComponent implements OnInit {
         }).catch(err =>{
           console.log("error", err);
         });
+    this.reser.traerLocales()
+      .then(data =>{
+        this.locales = data;
+        console.log("Locales", this.locales);
+      }).catch(err =>{
+        console.log("error", err);
+      });
   }
 
   pedir(){
-    /*this.reser.guardarOpProducto(this.productos[index].id, localStorage.getItem('id'))
-      .then(data =>{
-        this.ret = data;
-        alert("Pedido exitoso");
-        console.log("op", this.ret);
-      }).catch(err =>{
-        console.log("error", err);
-      });*/
       let aa = 0;
       let aux = 0;
       for(aa=0; aa < this.coun ; aa++){
@@ -79,6 +79,8 @@ export class PedidosComponent implements OnInit {
         this.key = dd + '' + mmm + '' + yyyy + '' + hh + '' + mm + '' + ss;
 
         this.total.precio = this.precio;
+        this.total.key = this.key;
+        this.total.userid = localStorage.getItem('id');
         this.fire = this.db.object('https://pizzeria-1533a.firebaseio.com/pedidos/' + localStorage.getItem('id')+'/'+this.key);
 
         this.setCurrentPosition();
@@ -90,12 +92,15 @@ export class PedidosComponent implements OnInit {
             console.log("error", err);
           });
 
-        //this.fire.set(this.total);
+        this.fire.set(this.total);
         console.log(this.lat, this.long);
         alert("Compra registrada");
+        
+        this.fire = this.db.object('https://pizzeria-1533a.firebaseio.com/estadisticas/' + this.total.local.idlocal + '/' + this.key);
+        this.fire.set({productos:this.total.pedidos, ganancia:this.total.precio});
       }
-      
       this.precio = 0;
+      this.router.navigate(['/hub']);      
   }
 
   agregar(index){
@@ -104,7 +109,6 @@ export class PedidosComponent implements OnInit {
       this.total.pedidos[this.coun].cantidad = 1;
       this.productos[index].ag = true;
       this.coun++;
-      //alert("asdasdasd");
     }else{
       let aa = 0;
       for(aa=0; aa < this.len ; aa++){
@@ -137,6 +141,11 @@ export class PedidosComponent implements OnInit {
         console.log(this.lat, this.long);
       });
     }
+  }
+
+  sLocal(index){
+    console.log(this.total.local);
+    this.total.local = this.locales[index];
   }
 
 }

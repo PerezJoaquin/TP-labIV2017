@@ -1,25 +1,24 @@
-<div style="background-color:#af4949;border-radius:15px;padding:15px">
-  <div class="row">
-    <div class="col">
-      <div ngbDropdown class="btn">
-        <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-        <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-          <button class="dropdown-item" (click)="locT()">Todos</button>
-          <button class="dropdown-item" (click)="loc1()">Local 1</button>
-          <button class="dropdown-item" (click)="loc2()">Local 2</button>
-          <button class="dropdown-item" (click)="loc3()">Local 3</button>
-        </div>
-      </div>
+<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <div ngbDropdown class="d3" style="padding:1px">
+    <button class="btn btn-block" id="dropdownBasic1" style="background-color:rgba(183,48,30,1);color:white;" ngbDropdownToggle>
+      <div style="font-weight:bold">{{sloca.nombre}}</div>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownBasic1" >
+      <button class="dropdown-item" (click)="sLocal('todos')">Todos los Locales</button>
+      <button class="dropdown-item" *ngFor="let ltem of locales; let l = index" (click)="sLocal(l)">{{ltem.nombre}} - {{ltem.direccion}}</button>
     </div>
   </div>
+  <br>
 
-  <div *ngFor="let item of varOfertas; let i = index " style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
-    <div *ngIf="item.local == local1 || item.local == local2 || item.local == local3">
-      Precio: ${{ item.precio }}<br>
-      Local: {{item.local}}<br>
-      Hasta: {{item.limite}}<br>
-      Descripcion: {{item.descripcion}} <br>
-      <button class="btn btn-outline-secondary" (click)="ordenar(i)">Ordenar</button>
+  <div *ngFor="let item of varOfertas; let i = index " >
+    <div *ngIf="item.local == sloca.idlocal || sloca.nombre == 'Todos los Locales'" [ngStyle]="{ 'background-image': 'url(' + locales[item.local-1].imagen1 + ')', 'background-size': '100%', 'background-repeat': 'repeat', 'background-position': 'center', 'color':'white'}" class="d3">
+      <div style="background-color:rgba(32,32,32,0.65)"  class="d3">  
+        Precio: ${{ item.precio }}<br>
+        Local: {{locales[item.local-1].nombre}}<br>
+        Hasta: {{item.limite}}<br>
+        Descripcion: {{item.descripcion}} <br>
+        <button class="btn btn-outline-secondary" (click)="ordenar(i)">Pedir</button>
+      <div>
     </div>
   </div>
 </div>
