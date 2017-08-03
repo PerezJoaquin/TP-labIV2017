@@ -9,35 +9,35 @@ export class UserService {
   constructor(public http:Http) {}
 
   login(user, contra){
-    return this.http.get('http://localhost/pizzeria/index.php/login?usuario='+user+"&contrasena="+contra)
+    return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/login?usuario='+user+"&contrasena="+contra)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
   }
 
   register(user){
-    return this.http.get('http://localhost/pizzeria/index.php/registrar?usuario='+user.usuario+"&contrasena="+user.contra+"&tipo="+user.tipo+"&local="+user.local)
+    return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/registrar?usuario='+user.usuario+"&contrasena="+user.contra+"&tipo="+user.tipo+"&local="+user.local)
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
   }
 
   users(){
-    return this.http.get('http://localhost/pizzeria/index.php/usuarios')
-    .toPromise()
-    .then(this.extraer)
-    .catch(this.error);
-  }
-
-  actualizarEstado(id, estado){
-    return this.http.get('http://localhost/pizzeria/index.php/estado?id='+id+"&estado="+estado)
+    return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/usuarios')
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
   }
 
   actualizarUser(id, user){
-    return this.http.post('http://localhost/pizzeria/index.php/usermod',{id, usuario:user.usuario, contrasena:user.contrasena, local:user.local, tipo:user.tipo, estado:user.estado})
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/usermod',{id, usuario:user.usuario, contrasena:user.contrasena, local:user.local, tipo:user.tipo, estado:user.estado})
+    .toPromise()
+    .then(this.extraer)
+    .catch(this.error);
+  }
+
+  actualizarEstado(id, estado){
+    return this.http.post('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/estado',{id, estado:estado})
     .toPromise()
     .then(this.extraer)
     .catch(this.error);
