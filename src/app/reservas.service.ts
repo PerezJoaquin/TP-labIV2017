@@ -293,6 +293,13 @@ export class ReservasService {
     .catch(this.error);
   }
 
+  traerUnFireProd(key){
+    return this.http.get('https://pizzeria-1533a.firebaseio.com/pedidos/' + localStorage.getItem('id') + '/' + key + '.json')
+    .toPromise()
+    .then(this.extraer)
+    .catch(this.error);
+  }
+
   traerTodosFireProd(){
     return this.http.get('https://pizzeria-1533a.firebaseio.com/pedidos.json')
     .toPromise()

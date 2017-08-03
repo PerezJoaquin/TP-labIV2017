@@ -1,15 +1,23 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Inject } from '@angular/core';
 import {Router} from '@angular/router';
 import { ReservasService } from '../reservas.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { MapsAPILoader, SebmGoogleMap, GoogleMapsAPIWrapper } from 'angular2-google-maps/core';
+import {CsvService} from "angular2-json2csv";
+/*import * as jsPDFs from 'jspdf'
+
+declare var jsPDF: any;*/
+import * as jsPDF from 'jspdf';
+import * as jpt from 'jspdf-autotable';
+//import * as html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.css'],
-  providers: [ReservasService, AngularFireDatabase, GoogleMapsAPIWrapper]
+  providers: [ReservasService, AngularFireDatabase, GoogleMapsAPIWrapper, { provide: 'Window', useValue: window }, CsvService]
 })
 export class PedidosComponent implements OnInit {
   productos;
@@ -24,11 +32,13 @@ export class PedidosComponent implements OnInit {
   lat;
   long;
   locales;
+  pdf = false;
+  fireprod;
 
 
-  constructor(public router:Router, public reser: ReservasService, public db: AngularFireDatabase,
+  constructor(@Inject('Window') private window: Window, public router:Router, public reser: ReservasService, public db: AngularFireDatabase,
               private mapsAPILoader: MapsAPILoader, public gmapsApi: GoogleMapsAPIWrapper,
-              private ngZone: NgZone) {
+              private ngZone: NgZone, public csv:CsvService) {
     
     for(this.counter=0; this.counter < this.len; this.counter++){
       this.productos[this.counter].ag = false;
@@ -141,7 +151,9 @@ export class PedidosComponent implements OnInit {
        
       }
       this.precio = 0;
-      this.router.navigate(['/hub']);      
+      //MOSTRAR PDF EXCEL
+      this.pdf = true;
+      //this.router.navigate(['/hub']);      
   }
 
   agregar(index){
@@ -187,6 +199,48 @@ export class PedidosComponent implements OnInit {
   sLocal(index){
     //console.log(this.total.local);
     this.total.local = this.locales[index];
+  }
+
+  gpdf(){
+    let doc = new jsPDF();
+    doc.setFontSize(30); 
+    doc.text(12, 25, "\t\tPizzeria Argenta");
+    doc.setFontSize(20);
+    /*let canvas = document.getElementById("canvas");
+    let html_container = document.getElementById("pff"),
+    html = html_container.innerHTML;
+
+    this.raz.drawHTML(html, canvas);*/
+    //doc.text(12, 10, "\t\tPizzeria Argenta");
+    //var col = ["Producto", "Cantidad", "Precio unitario"];
+    var rows = [];
+    let count = 55;
+    doc.text(12, 45, "\tProducto\t       Cantidad\t      Precio Unitario");
+    for(var key in this.total.pedidos){
+        /*var temp = [this.total.pedidos[key].nombre, this.total.pedidos[key].cantidad, "$"+this.total.pedidos[key].precio];
+        rows.push(temp);*/
+      doc.text(12, count, "  "+this.total.pedidos[key].nombre);
+      doc.text(12, count, "\t\t\t\t\t\t"+this.total.pedidos[key].cantidad);
+      doc.text(12, count, "\t\t\t\t\t\t\t\t\t\t$"+this.total.pedidos[key].precio);
+      count+=10;
+    }
+     doc.text(12, count+=10, "\tTotal: $" +this.total.precio);
+    //rows.push(tempo);
+    //doc.autoTable(col, rows);
+    //doc.addHTML(document.getElementById('pff'),)
+
+    doc.save('Pedido.pdf');
+  }
+
+  excel(){
+    let datos = new Array();
+    //let fields = ['Poducto', 'Cantidad', 'Precio unitario'];
+    for(var key in this.total.pedidos){
+      datos.push({'Producto':this.total.pedidos[key].nombre, 'Cantidad':this.total.pedidos[key].cantidad, 'Precio unitario':"$"+this.total.pedidos[key].precio})
+    }
+    datos.push({'Producto':'Total', 'Cantidad':'', 'Precio unitario':"$"+this.total.precio})
+    //this.csv.download({data:datos, fields:fields}, 'Pedido');
+    this.csv.download(datos, 'Pedido');
   }
 
 }

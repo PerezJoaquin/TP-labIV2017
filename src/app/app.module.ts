@@ -27,6 +27,7 @@ import { environment } from '../environments/environment';
 import { ModComponent } from './mod/mod.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { ChartsModule } from 'ng2-charts';
+import { PdfComponent } from './pdf/pdf.component';
 
 
 
@@ -43,7 +44,8 @@ const appRoutes:Routes = [
   {path:"locales", component:ListalocalesComponent},
   {path:"pedidos", component:PedidosComponent},
   {path:"mod", component:ModComponent},
-  {path:"estadisticas", component:EstadisticasComponent}
+  {path:"estadisticas", component:EstadisticasComponent},
+  {path:"pedido", component:PdfComponent}
   /*,
   { path: '',
     redirectTo: '/login',
@@ -68,7 +70,8 @@ const appRoutes:Routes = [
     ListalocalesComponent,
     PedidosComponent,
     ModComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    PdfComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

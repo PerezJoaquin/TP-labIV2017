@@ -1,5 +1,5 @@
 
-<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+<div *ngIf="!pdf" style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
   <div ngbDropdown class="d3" style="padding:1px">
     <button class="btn btn-block" id="dropdownBasic1" style="background-color:rgba(183,48,30,1);color:white;" ngbDropdownToggle>
       <div *ngIf="!total.local" style="font-weight:bold">Seleccione un local</div>
@@ -45,3 +45,23 @@
   <button id="twitterbadge" class="btn btn-block" (click)="pedir()" style="background-color:rgb(215,79,61);color:white;border:dotted;margin: 25px auto;" *ngIf="total.local">Pedir</button>
 </div>
 <br>
+
+<div id="pff" *ngIf="pdf" style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <div [ngStyle]="{ 'background-image': 'url(' + total.local.imagen1 + ')', 'background-size': '100%', 'background-repeat': 'repeat', 'background-position': 'center', 'color':'white'}" class="d5">
+      <div *ngFor="let ftem of total.pedidos" style="background-color:rgba(32,32,32,0.65)"  class="d5">
+          Producto: {{ftem.nombre}}<br>
+          Precio: ${{ ftem.precio }}<br>     
+          Cantidad: {{ftem.cantidad}}
+      </div>
+      <div class="d5" style="background-color:rgba(32,32,32,0.65);position:relative;top:5px">
+        Local: {{total.local.nombre}}<br>
+        Dirección: {{total.local.direccion}}<br>
+        Total: ${{total.precio}}
+      </div>
+      <br>
+      <button class="btn d5" style="border:solid" (click)="gpdf()">Descargar como PDF</button>
+      <button class="btn d5" style="border:solid" (click)="excel()">Descargar como Excel</button>
+    </div>
+  </div>
+
+  <!--<canvas  id="canvas" width="1000px" height="100px" style="border: 1px solid black;"></canvas>-->
