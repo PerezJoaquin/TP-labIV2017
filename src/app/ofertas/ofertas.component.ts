@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
 import { ReservasService } from '../reservas.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ofertas',
@@ -17,7 +18,7 @@ export class OfertasComponent implements OnInit {
   lat;
   long;
 
-  constructor(public ofer:OfertasService, public reser:ReservasService) { 
+  constructor(public ofer:OfertasService, public reser:ReservasService, public router:Router) { 
     this.ofer.traerOfertas()
     .then(data =>{
       this.varOfertas = data;
@@ -46,13 +47,15 @@ export class OfertasComponent implements OnInit {
   }
 
   ordenar(index){
-    /*this.reser.guardarOpOferta(this.varOfertas[index].id, localStorage.getItem('id'))
+    this.reser.guardarOpOferta(this.varOfertas[index].id, localStorage.getItem('id'), "-34.8017256", "-58.3512734")
       .then(data =>{
         this.ret = data;
-        console.log("op", this.ret);
+        alert("Orden exitosa");
+         this.router.navigate(['/hub']); 
+        //console.log("op", this.ret);
       }).catch(err =>{
         console.log("error", err);
-      });*/
+      });
   }
 
 }

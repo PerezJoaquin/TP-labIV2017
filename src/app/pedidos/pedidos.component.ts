@@ -153,7 +153,7 @@ export class PedidosComponent implements OnInit {
       this.precio = 0;
       //MOSTRAR PDF EXCEL
       this.pdf = true;
-      //this.router.navigate(['/hub']);      
+          
   }
 
   agregar(index){
@@ -230,6 +230,7 @@ export class PedidosComponent implements OnInit {
     //doc.addHTML(document.getElementById('pff'),)
 
     doc.save('Pedido.pdf');
+     
   }
 
   excel(){
@@ -241,6 +242,10 @@ export class PedidosComponent implements OnInit {
     datos.push({'Producto':'Total', 'Cantidad':'', 'Precio unitario':"$"+this.total.precio})
     //this.csv.download({data:datos, fields:fields}, 'Pedido');
     this.csv.download(datos, 'Pedido');
+      
   }
 
+  volver(){
+    this.router.navigate(['/hub']);
+  }
 }
