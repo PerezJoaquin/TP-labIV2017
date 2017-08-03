@@ -8,7 +8,7 @@ export class OfertasService {
 
   traerOfertas(){
     //return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/ofertas')
-    return this.http.get('https://pizeriaapi.000webhostapp.com/pizzeria/index.php/ofertas')
+    return this.http.get('http://localhost/pizzeria/index.php/ofertas')
     .toPromise()
     .then(this.extraer)
     .catch(this.error);

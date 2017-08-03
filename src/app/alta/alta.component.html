@@ -23,7 +23,7 @@
       <ng-template ngbPanelContent>
         <input type="text" placeholder="Usuario" [(ngModel)]="usuario" class="d3">
         <input type="text" placeholder="Contraseña" [(ngModel)]="contra" class="d3">
-            <div ngbDropdown class="btn">
+            <div ngbDropdown class="btn" style="position:relative; left:-15px">
               <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
               <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
@@ -34,25 +34,21 @@
         </button>
       </ng-template>
     </ngb-panel>
-    <!--<ngb-panel id="static-5" title="Alta Pedido" *ngIf="user.tipo == 'gerente' || user.tipo == 'admin'">
+    <ngb-panel id="static-5" title="Alta Encargado" *ngIf="user.tipo == 'admin'">
       <ng-template ngbPanelContent>
-        <div ngbDropdown class="btn">
-          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Productos</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-            <button class="dropdown-item" *ngFor="let ptem of productos; let p = index" (click)="sProducto(p)">{{ptem.nombre}}</button>           
-          </div>
-        </div>
-        <div ngbDropdown class="btn">
-          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Usuarios</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-            <button class="dropdown-item" *ngFor="let utem of usuarios; let u = index" (click)="sUsuario(u)">{{utem.usuario}}</button>           
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary" (click)="pedido()">
+        <input type="text" placeholder="Usuario" [(ngModel)]="usuario" class="d3">
+        <input type="text" placeholder="Contraseña" [(ngModel)]="contra" class="d3">
+            <div ngbDropdown class="btn" style="position:relative; left:-15px">
+              <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
+              <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
+              </div>
+            </div>
+        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="encargado()">
           Crear
         </button>
       </ng-template>
-    </ngb-panel>-->
+    </ngb-panel>
     <ngb-panel id="static-6" title="Alta Local" *ngIf="user.tipo == 'admin'">
       <ng-template ngbPanelContent>
         <input type="text" placeholder="Nombre" [(ngModel)]="nombre" class="d3">
@@ -70,7 +66,12 @@
     <ngb-panel id="static-3" title="Alta Oferta">
       <ng-template ngbPanelContent>
         <input type="text" placeholder="Precio" [(ngModel)]="oferPre" class="d3"><br>
-        <input type="text" placeholder="Local" [(ngModel)]="oferLoc" class="d3"><br>
+        <div ngbDropdown class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
+          </div>
+        </div>
         <ngb-datepicker #dp [(ngModel)]="oferLim" (navigate)="date = $event.next" class="d3">Fecha Limite</ngb-datepicker><br>
         <input type="text" placeholder="Descripción" [(ngModel)]="oferDes" class="d3"><br>
         <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="oferta()" >

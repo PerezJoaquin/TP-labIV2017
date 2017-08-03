@@ -25,6 +25,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { ModComponent } from './mod/mod.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -37,10 +39,11 @@ const appRoutes:Routes = [
   {path:"alta", component:AltaComponent},
   {path:"lista", component:ListaComponent},
   {path:"listaUsuarios", component:ListausersComponent},
-  {path:"altalocales", component:LocalesComponent},
+  {path:"modlocales", component:LocalesComponent},
   {path:"locales", component:ListalocalesComponent},
   {path:"pedidos", component:PedidosComponent},
-  {path:"mod", component:ModComponent}
+  {path:"mod", component:ModComponent},
+  {path:"estadisticas", component:EstadisticasComponent}
   /*,
   { path: '',
     redirectTo: '/login',
@@ -64,7 +67,8 @@ const appRoutes:Routes = [
     LocalesComponent,
     ListalocalesComponent,
     PedidosComponent,
-    ModComponent
+    ModComponent,
+    EstadisticasComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -78,7 +82,8 @@ const appRoutes:Routes = [
     ReactiveFormsModule,
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ChartsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

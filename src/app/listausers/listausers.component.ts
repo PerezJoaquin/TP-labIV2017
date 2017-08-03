@@ -16,7 +16,7 @@ export class ListausersComponent implements OnInit {
     this.usu.users()
       .then(data =>{
         this.usuarios = data;
-        console.log("usuarios", this.usuarios);
+        //console.log("usuarios", this.usuarios);
       }).catch(err =>{
         console.log("error", err);
       });
@@ -35,9 +35,12 @@ export class ListausersComponent implements OnInit {
     this.usu.actualizarEstado(this.usuarios[index].id, this.usuarios[index].estado)
       .then(data =>{
         this.res = data;
-        console.log("usuarios", this.usuarios);
+        if(this.res){
+          alert("Estado modificado con exito");
+        }
+        //console.log("usuarios", this.usuarios);
       }).catch(err =>{
-        console.log("error", err);
+        console.log("error guardar estado", err);
       });
   }
 

@@ -23,7 +23,7 @@ export class ListalocalesComponent implements OnInit {
     reser.traerLocales()
       .then(data =>{
         this.locales = data;
-        console.log("Locales", this.locales);
+        //console.log("Locales", this.locales);
       }).catch(err =>{
         console.log("error", err);
       });

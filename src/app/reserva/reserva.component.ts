@@ -49,9 +49,9 @@ export class ReservaComponent implements OnInit {
         .then(data =>{
           this.locales = data;
           this.localElegido = this.locales[0];
-          console.log("Locales", this.locales);
+          //console.log("Locales", this.locales);
         }).catch(err =>{
-          console.log("error", err);
+          console.log("error locales", err);
         });
       
    }
@@ -88,9 +88,9 @@ export class ReservaComponent implements OnInit {
           .then(data =>{
             alert("Reserva existosa");
             this.router.navigate(['/hub']);
-            console.log("success", data);
+            //console.log("success", data);
           }).catch(err =>{
-            console.log("error", err);
+            console.log("error reserva", err);
           });
         alert("Reserva Exitosa");
       }else{
@@ -103,7 +103,7 @@ export class ReservaComponent implements OnInit {
   }
   
   sLocal(id){
-    console.log(this.locales[id]);
+    //console.log(this.locales[id]);
     this.latitude = Number(this.locales[id].latitud);  
     this.longitude = Number(this.locales[id].longitud);
     this.localElegido = this.locales[id];
@@ -111,14 +111,14 @@ export class ReservaComponent implements OnInit {
     this.zoom = 16;
   }
 
-  direct(){
+  /*direct(){
     this.reservas.dire(this.userLat, this.userLong, this.latitude, this.longitude)
     .then(data =>{
       console.log("directions", data);
     }).catch(err =>{
       console.log("error directions", err);
     });
-  }
+  }*/
 
   //directions
 }

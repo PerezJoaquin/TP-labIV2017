@@ -1,73 +1,69 @@
-<!--<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
-  <div *ngFor="let item of op;" style="color:aliceblue;background-color:rgba(183,48,30,1);border-radius:15px;padding:10px">
-    <div *ngFor="let ptem of productos;">
-     <div *ngIf="item.tipo == 'producto' && item.iditem == ptem.id">
-        Producto:<br>
-        <img src="{{ptem.imagen}}" style="width:100px">
-        {{ptem.nombre}}<br>
-        Precio: ${{ ptem.precio }}<br>
-     </div>
-    </div>
-    <div *ngFor="let otem of ofertas;">
-     <div *ngIf="item.tipo == 'oferta' && item.iditem == otem.id">
-       Oferta:<br>
-        Precio: ${{ otem.precio }}<br>
-        Local: {{otem.local}}<br>
-        Hasta: {{otem.limite}}<br>
-        Descripcion: {{otem.descripcion}} <br>
-     </div>
-    </div>
-    <br>
-    Estado:{{item.estado}}<br>
-    <div *ngFor="let utem of usuarios;">
-     <div *ngIf="item.userid == utem.id">
-        Usuario: {{ utem.usuario }}<br>
-     </div>
-    </div>
-  </div>
-</div>-->
+
 
 <div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
-  <div style="background-color:rgba(215,79,61,0.7);border-radius:15px;padding:15px;border:solid;color:white">
+  <div *ngIf="fireProd" style="background-color:rgba(215,79,61,0.7);border-radius:15px;padding:15px;border:solid;color:white">
     <strong style="color:aliceblue">Pedidos</strong><br><br>
-    <div *ngFor="let otem of op">
-      <!--<div *ngFor="let ftem of fireProd" [ngStyle]="{ 'background-image': 'url(' + fireProd[otem.userid][otem.fireid].local.imagen1 + ')', 'background-size': '100%', 'background-repeat': 'repeat', 'background-position': 'center', 'color':'white'}" class="d3">-->
-      <div *ngFor="let ftem of fireProd[otem.userid]">
-          <div *ngIf="ftem.key == op.fireid">
-            <!--<div *ngFor="let ftem of fireProd[utem.fireid].pedidos" style="background-color:rgba(32,32,32,0.65)"  class="d3">
-                Producto: {{ftem.nombre}}<br>
-                Precio: ${{ ftem.precio }}<br>     
-                Cantidad: {{ftem.cantidad}}
-            </div>
-            <div class="d3" style="background-color:rgba(32,32,32,0.65);position:relative;top:5px">
-              Local: {{fireProd[utem.fireid].local.nombre}}<br>
-              Dirección: {{fireProd[utem.fireid].local.direccion}}<br>
-              Total: ${{fireProd[utem.fireid].precio}}
-            </div>-->
-            {{ftem.cantidad}}
-          </div>
-      </div>
-    </div>
-  </div>
-  <!--<div style="background-color:rgba(215,79,61,0.7);border-radius:15px;padding:15px;border:solid;color:white;position:relative;top:3px">
-    <strong style="color:aliceblue">Ofertas</strong><br>
-    <div *ngFor="let item of userOfer" style="color:aliceblue">
-      <div *ngFor="let jtem of ofer">
-        <div class="d3" *ngIf="jtem.id == item.iditem && item.tipo=='oferta'" [ngStyle]="{ 'background-image': 'url(' + locales[jtem.local-1].imagen1 + ')', 'background-size': '100%', 'background-repeat': 'no-repeat', 'background-position': 'center', 'color':'white'}">
-          <div style="background-color:rgba(32,32,32,0.65);border:none" class="d3">
-            Precio: ${{ jtem.precio }}<br>
-            <div *ngFor="let ltem of locales">
-              <div *ngIf="ltem.idlocal == jtem.local">
-                Local: {{ltem.nombre}}<br>
+    <div *ngFor="let clie of usuarios">
+      <div *ngFor="let op of oper; let i = index">
+        <div *ngIf="op.tipo == 'producto' && clie.id == op.userid" [ngStyle]="{ 'background-image': 'url(' + fireProd[clie.id][op.fireid].local.imagen1 + ')', 'background-size': '100%', 'background-repeat': 'repeat', 'background-position': 'center', 'color':'white', 'padding':'0px'}" class="d3">
+          <div style="background-color:rgba(32,32,32,0.65); border:none"  class="d3">
+            <div *ngFor="let prod of fireProd[clie.id][op.fireid].pedidos" >
+              {{prod.nombre}} x {{prod.cantidad}}
+            </div><br>
+            Cliente: {{clie.usuario}}<br>
+            Local: {{fireProd[clie.id][op.fireid].local.nombre}}<br>
+            Total: ${{fireProd[clie.id][op.fireid].precio}}
+            <div ngbDropdown style="width:200px">
+              <button class="btn d3" id="dropdownBasic1" style="background-color:rgba(183,48,30,1);color:white;border:solid;" ngbDropdownToggle>
+                Estado: {{op.estado}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownBasic1" >
+                <button class="dropdown-item" (click)="estado(i, 'Pendiente')">Pendiente</button>
+                <button class="dropdown-item" (click)="estado(i, 'Entregado')">Entregado</button>
               </div>
             </div>
-          
-            Hasta: {{jtem.limite}}<br>
-            Descripcion: {{jtem.descripcion}} <br>
-            Estado: {{item.estado}}
+            <button type="button" style="border:solid;position:relative;top:2px" class="d3" (click)="actu(i)">Actualizar Estado</button>
           </div>
         </div>
       </div>
+    </div>  
+  </div>
+  <div style="background-color:rgba(215,79,61,0.7);border-radius:15px;padding:15px;border:solid;color:white;position:relative;top:5px">
+    <strong style="color:aliceblue">Ofertas</strong><br><br>
+    <div *ngFor="let clien of usuarios">
+      <div *ngFor="let ope of oper; let i = index">
+        <div *ngIf="ope.tipo == 'oferta' && clien.id == ope.userid">
+          <div *ngFor="let ofe of ofertas">
+            <div *ngIf="ope.iditem == ofe.id">
+              <div *ngFor="let loca of locales">
+                <div *ngIf="ofe.local == loca.idlocal" [ngStyle]="{ 'background-image': 'url(' + loca.imagen1 + ')', 'background-size': '100%', 'background-repeat': 'repeat', 'background-position': 'center', 'color':'white', 'padding':'0px'}" class="d3">
+                  <div style="background-color:rgba(32,32,32,0.65); border:none"  class="d3">
+                    Oferta: {{ofe.descripcion}}<br>
+                    Local: {{loca.nombre}}<br>
+                    Precio: ${{ofe.precio}}<br>
+                    Limite: {{ofe.limite}}
+                    <div ngbDropdown style="width:200px">
+                      <button class="btn d3" id="dropdownBasic1" style="background-color:rgba(183,48,30,1);color:white;border:solid;" ngbDropdownToggle>
+                        Estado: {{ope.estado}}
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownBasic1" >
+                        <button class="dropdown-item" (click)="estado(i, 'Pendiente')">Pendiente</button>
+                        <button class="dropdown-item" (click)="estado(i, 'Entregado')">Entregado</button>
+                      </div>
+                    </div>
+                    <button type="button" style="border:solid;position:relative;top:2px" class="d3" (click)="actu(i)">Actualizar Estado</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
     </div>
-  </div>-->
+  </div>
 </div>
+
+
+
+
+

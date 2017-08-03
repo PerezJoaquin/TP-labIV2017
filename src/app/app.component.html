@@ -7,7 +7,7 @@
   |
   <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/operaciones']);">Operaciones anteriores</button>
   |
-  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/reservas']);">Reservas</button>
+  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/reservas']);">Reservar Local</button>
   <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;position:absolute;right:20px;top:5px" (click)="logout()">Salir</button>
 </div>
 
@@ -31,7 +31,9 @@
   |
   <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/listaUsuarios']);">Cambio Estado</button>
   |
-  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/locales']);">Local</button>
+  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/modlocales']);">Local</button>
+  |
+  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/mod']);">Modificación</button>
   <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;position:absolute;right:20px;top:5px" (click)="logout()">Salir</button>
 </div>
 
@@ -44,7 +46,7 @@
   |
   <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/mod']);">Modificación</button>
   |
-  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" >Estadisticas</button>
+  <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;" (click)="this.router.navigate(['/estadisticas']);">Estadisticas</button>
   <button class="btn" style="background-color:rgba(215,79,61,0);color:white;font-weight:bold;position:absolute;right:20px;top:5px" (click)="logout()">Salir</button>
 </div>
 

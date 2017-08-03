@@ -1,17 +1,18 @@
-<div style="background-color:#af4949;border-radius:15px;padding:15px">
-  <div *ngFor="let item of usuarios; let i = index " style="color:aliceblue;background-color:brown;border-radius:15px;padding:10px">
-    
-    Usuario: {{item.usuario}}<br>
-    Nivel: {{item.tipo}}<br>
-    Estado: {{item.estado}}    
-    <div ngbDropdown class="btn">
-      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Estados</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item" (click)="cambioI(i)">Inactivo</button>           
-        <button class="dropdown-item" (click)="cambioA(i)">Activo</button>           
-      </div>
-    </div>  
-    <br>
-    <button class="btn btn-outline-primary" (click)="cambiar(i)">Confirmar</button>
+<div style="background-color:rgba(183,48,30,0.80);border-radius:15px;padding:15px">
+  <h2 style="color:white">Usuarios</h2>
+  <div *ngFor="let item of usuarios; let i = index " style="color:aliceblue; position:relative; top:3px" [ngStyle]="{ 'background-image': 'url(' + 'http://i.imgur.com/SnoJ5Dv.png' + ')',  'background-repeat': 'repeat', 'background-position': 'center', 'color':'white', 'padding':'0px'}" class="d3">
+    <div style="background-color:rgba(32,32,32,0.65); border:none"  class="d3">
+      Usuario: {{item.usuario}}<br>
+      Nivel: {{item.tipo}}<br>    
+      <div ngbDropdown class="btn" style="position:relative; left:-15px">
+        <button class="btn d3" style="border:solid" id="dropdownBasic1" ngbDropdownToggle>Estado: {{item.estado}}</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" (click)="cambioI(i)">Inactivo</button>           
+          <button class="dropdown-item" (click)="cambioA(i)">Activo</button>           
+        </div>
+      </div>  
+      <br>
+      <button class="btn d3" style="border:solid;position:relative;top:3px" (click)="cambiar(i)">Confirmar</button>
+    </div>
   </div>
 </div>

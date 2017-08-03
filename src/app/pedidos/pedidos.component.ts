@@ -47,16 +47,16 @@ export class PedidosComponent implements OnInit {
         .then(data =>{
           this.len = data.length;
           this.productos = data;
-          console.log("productos", this.productos);
+          //console.log("productos", this.productos);
         }).catch(err =>{
-          console.log("error", err);
+          console.log("error traer productos", err);
         });
     this.reser.traerLocales()
       .then(data =>{
         this.locales = data;
-        console.log("Locales", this.locales);
+        //console.log("Locales", this.locales);
       }).catch(err =>{
-        console.log("error", err);
+        console.log("error traer locales", err);
       });
   }
 
@@ -87,17 +87,58 @@ export class PedidosComponent implements OnInit {
         this.reser.guardarOpProducto("0", localStorage.getItem('id'), ""+this.key, ""+this.lat, ""+this.long)
           .then(data =>{
             this.ret = data;
-            console.log("op", this.ret);
+            //console.log("op", this.ret);
           }).catch(err =>{
-            console.log("error", err);
+            console.log("error guardar operación", err);
+            alert("Hubo un problema al registrar la compra. Vuelva a intentar");
+            return;
           });
 
         this.fire.set(this.total);
-        console.log(this.lat, this.long);
+        //console.log(this.lat, this.long);
         alert("Compra registrada");
+
+        //ganancia------------------------------
+        let ganancia:number;
+        this.reser.traerGan(this.total.local.idlocal)
+          .then(data =>{
+            if(!isNaN(data)){
+              ganancia = Number(data);
+            }else{
+              ganancia = 0;
+            }
+            ganancia += Number(this.total.precio);
+            this.fire = this.db.object('https://pizzeria-1533a.firebaseio.com/estadisticas/ganancias/'+this.total.local.idlocal);
+            this.fire.set({ganan:ganancia});
+            //console.log("op", this.ret);
+          }).catch(err =>{
+            console.log("error guardar operación", err);
+          });
         
-        this.fire = this.db.object('https://pizzeria-1533a.firebaseio.com/estadisticas/' + this.total.local.idlocal + '/' + this.key);
-        this.fire.set({productos:this.total.pedidos, ganancia:this.total.precio});
+        //productos---------------------------------
+        let tot = this.total;
+        let cant;
+        let re = this.reser;
+        let fi;
+        let dbb = this.db;
+        this.total.pedidos.forEach(function(element) {
+          cant = 0;
+          re.traerProdLoc(element.id)
+          .then(data =>{
+            if(!isNaN(data)){
+              cant = Number(data);
+            }else{
+              cant = 0;
+            }
+            cant += Number(element.cantidad);
+            fi = dbb.object('https://pizzeria-1533a.firebaseio.com/estadisticas/prodloc/'+element.id);
+            fi.set({cantidad:cant});
+            //console.log("op", this.ret);
+          }).catch(err =>{
+            console.log("error guardar operación", err);
+          });
+        });
+       
       }
       this.precio = 0;
       this.router.navigate(['/hub']);      
@@ -120,7 +161,7 @@ export class PedidosComponent implements OnInit {
         }
       }
     }
-    console.log("agregado", index, this.total.pedidos);
+    //console.log("agregado", index, this.total.pedidos);
   }
 
   cant(ind, can){
@@ -138,13 +179,13 @@ export class PedidosComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.long = position.coords.longitude;
-        console.log(this.lat, this.long);
+        //console.log(this.lat, this.long);
       });
     }
   }
 
   sLocal(index){
-    console.log(this.total.local);
+    //console.log(this.total.local);
     this.total.local = this.locales[index];
   }
 

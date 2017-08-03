@@ -3,22 +3,28 @@ import { UserService } from '../user.service';
 import { PricipalComponent } from '../pricipal/pricipal.component';
 import {Router} from '@angular/router';
 import { AuthHttp, AuthConfig, JwtHelper } from 'angular2-jwt';
+import { ReservasService } from '../reservas.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [UserService, JwtHelper ]
+  providers: [UserService, JwtHelper, ReservasService, AngularFireDatabase ]
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public usu:UserService, public router:Router, public jwt:JwtHelper ) { 
+  constructor(public usu:UserService, public router:Router, public jwt:JwtHelper, 
+    public reser:ReservasService, public db: AngularFireDatabase ) { 
   }
   cuenta = {};
   usuario:string;
   contra:string;
   usuarioR:string;
   contraR:string;
+  fire;
+  hoy;
 
 
   ngOnInit() {
@@ -39,6 +45,12 @@ export class LoginComponent implements OnInit {
         console.log(
           this.jwt.decodeToken(data.tok)
         );
+        //estdadistica log
+        this.hoy = new Date();
+        let fecha = this.hoy.getFullYear() + '/' + (this.hoy.getMonth()+1) + '/' + this.hoy.getDate() + ' ' + this.hoy.getHours() + ':' + this.hoy.getMinutes();
+        this.fire = this.db.object('https://pizzeria-1533a.firebaseio.com/estadisticas/logs/'+data.id);
+        this.fire.set(fecha);
+
         this.router.navigate(['/']);
         location.reload();
       }else{
@@ -54,12 +66,15 @@ export class LoginComponent implements OnInit {
     this.usu.register(this.cuenta)
     .then(data =>{
       this.cuenta = data;
-      console.log("login");
-      console.log("success", data);
+      if(!isNaN(data)){
+        alert("Registro exitoso")
+        this.log();
+      }else{
+        alert("Hubo un problema al registrarse. Revise los datos en intente otra vez");
+      }
     }).catch(err =>{
       console.log("error", err);
     });
-    console.log(this.cuenta);
   }
 
   adm(){

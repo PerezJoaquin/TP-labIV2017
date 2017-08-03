@@ -1,84 +1,85 @@
 <div class="flat-form">  
-  <ngb-accordion [closeOthers]="true" activeIds="static-1">
+  <ngb-accordion [closeOthers]="true" activeIds="static-4">
+    <ngb-panel *ngIf="tipo == 'admin'" id="static-4" title="Locales">
+      <ng-template ngbPanelContent>
+        <div ngbDropdown class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let ltem of locales; let l = index" (click)="sEleme('loc', l)">{{ltem.nombre}}</button>           
+          </div>
+        </div>
+        <input type="text" placeholder="Nombre" class="d3" [(ngModel)]="local.nombre">
+        <input type="text" placeholder="Latitud" class="d3" [(ngModel)]="local.latitud">
+        <input type="text" placeholder="Longitud" class="d3" [(ngModel)]="local.longitud">
+        <input type="text" placeholder="Dirección" class="d3" [(ngModel)]="local.direccion">
+        <input type="text" placeholder="Imagen 1" class="d3" [(ngModel)]="local.imagen1">
+        <input type="text" placeholder="Imagen 2" class="d3" [(ngModel)]="local.imagen2">
+        <input type="text" placeholder="Imagen 3" class="d3" [(ngModel)]="local.imagen3">
+        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="loc()">
+          Actualizar
+        </button>
+      </ng-template>
+    </ngb-panel>
     <ngb-panel id="static-1" title="Productos">
       <ng-template ngbPanelContent>
+        <div ngbDropdown class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Productos</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let ptem of productos; let p = index" (click)="sEleme('prod', p)">{{ptem.nombre}}</button>           
+          </div>
+        </div>
+        <input type="text" placeholder="Nombre" class="d3" [(ngModel)]="producto.nombre">
+        <input type="text" placeholder="Precio" class="d3" [(ngModel)]="producto.precio">
+        <input type="text" placeholder="Imagen(URL)" class="d3" [(ngModel)]="producto.imagen">
+        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="prod()">
+          Actualizar
+        </button>
       </ng-template>
     </ngb-panel>
     <ngb-panel id="static-2" title="Ofertas">
       <ng-template ngbPanelContent>
+        <div ngbDropdown class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Ofertas</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let otem of ofertas; let o = index" (click)="sEleme('ofer', o)">{{otem.descripcion}}</button>           
+          </div>
+        </div>
+        <input type="text" placeholder="Precio" class="d3" [(ngModel)]="oferta.precio">
+        <input *ngIf="oferta.local == 'Local'" type="text" placeholder="Local" class="d3" [(ngModel)]="oferta.local">
+        <div ngbDropdown *ngIf="oferta.local != 'Local'" class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle><!--{{locales[oferta.local].nombre}}-->Local</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let item of locales; let i = index">{{item.nombre}}</button>           
+          </div>
+        </div>
+        <input type="text" placeholder="Limite(calendario)" class="d3" [(ngModel)]="oferta.limite">
+        <input type="text" placeholder="Descripción" class="d3" [(ngModel)]="oferta.descripcion">
+        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="ofe()">
+          Actualizar
+        </button>
       </ng-template>
     </ngb-panel>
-    <ngb-panel id="static-3" title="Usuarios">
+    <ngb-panel *ngIf="tipo == 'admin'" id="static-3" title="Usuarios">
       <ng-template ngbPanelContent>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-4" title="Locales">
-      <ng-template ngbPanelContent>
+        <div ngbDropdown class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Usuarios</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let utem of usuarios; let u = index" (click)="sEleme('user', u)">{{utem.usuario}}</button>           
+          </div>
+        </div>
+        <input type="text" placeholder="Usuario" class="d3" [(ngModel)]="usuario.usuario">
+        <input type="text" placeholder="Contraseña" class="d3" [(ngModel)]="usuario.contrasena">
+        <div ngbDropdown *ngIf="usuario.tipo != 'cliente' && usuario.tipo != 'admin'" class="btn" style="position:relative; left:-15px">
+          <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle><!--{{locales[usuario.local].nombre}}-->Local</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let item of locales; let i = index">{{item.nombre}}</button>           
+          </div>
+        </div>
+        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="us()">
+          Actualizar
+        </button>
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
 </div>
-<!--<div class="flat-form">
-  <ngb-accordion [closeOthers]="true" activeIds="static-1">
-    <ngb-panel id="static-1" title="Alta Producto">
-      <ng-template ngbPanelContent>
-        <input type="text" placeholder="Nombre" [(ngModel)]="prodNom" class="d3">
-        <input type="text" placeholder="Precio" [(ngModel)]="prodPre" class="d3">>
-        <input type="text" placeholder="Imagen(URL)" [(ngModel)]="prodImg" class="d3">
-        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="producto()" >
-          Crear
-        </button>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-2" title="Alta Cliente">
-      <ng-template ngbPanelContent>
-        <input type="text" placeholder="Usuario" [(ngModel)]="usuario" class="d3">
-        <input type="text" placeholder="Contraseña" [(ngModel)]="contra" class="d3">
-        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="cliente()">
-          Crear
-        </button>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-4" title="Alta Empleado" *ngIf="user.tipo == 'gerente'|| user.tipo == 'admin'">
-      <ng-template ngbPanelContent>
-        <input type="text" placeholder="Usuario" [(ngModel)]="usuario" class="d3">
-        <input type="text" placeholder="Contraseña" [(ngModel)]="contra" class="d3">
-            <div ngbDropdown class="btn">
-              <button class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" id="dropdownBasic1" ngbDropdownToggle>Locales</button>
-              <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" *ngFor="let item of locales; let i = index" (click)="sLocal(i)">{{item.nombre}}</button>           
-              </div>
-            </div>
-        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="empleado()">
-          Crear
-        </button>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-6" title="Alta Local" *ngIf="user.tipo == 'admin'">
-      <ng-template ngbPanelContent>
-        <input type="text" placeholder="Nombre" [(ngModel)]="nombre" class="d3">
-        <input type="text" placeholder="Latitud" [(ngModel)]="latitud" class="d3">
-        <input type="text" placeholder="Longitud" [(ngModel)]="longitud" class="d3">
-        <input type="text" placeholder="Direccion" [(ngModel)]="direccion" class="d3">
-        <input type="text" placeholder="Imagen 1" [(ngModel)]="imagen1" class="d3">
-        <input type="text" placeholder="Imagen 2" [(ngModel)]="imagen2" class="d3">
-        <input type="text" placeholder="Imagen 3" [(ngModel)]="imagen3" class="d3">
-        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="cLocal()" >
-          Crear
-        </button>
-      </ng-template>
-    </ngb-panel>
-    <ngb-panel id="static-3" title="Alta Oferta">
-      <ng-template ngbPanelContent>
-        <input type="text" placeholder="Precio" [(ngModel)]="oferPre" class="d3"><br>
-        <input type="text" placeholder="Local" [(ngModel)]="oferLoc" class="d3"><br>
-        <ngb-datepicker #dp [(ngModel)]="oferLim" (navigate)="date = $event.next" class="d3">Fecha Limite</ngb-datepicker><br>
-        <input type="text" placeholder="Descripción" [(ngModel)]="oferDes" class="d3"><br>
-        <button type="button" class="btn d3" style="color:white;background-color:rgba(183,48,30,0.80)" (click)="oferta()" >
-          Crear
-        </button>
-      </ng-template>
-    </ngb-panel>
-    
-  </ngb-accordion>
-</div>-->
+

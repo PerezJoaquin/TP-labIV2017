@@ -21,14 +21,14 @@ export class OfertasComponent implements OnInit {
     this.ofer.traerOfertas()
     .then(data =>{
       this.varOfertas = data;
-      console.log("success ofertas", this.varOfertas);
+      //console.log("success ofertas", this.varOfertas);
     }).catch(err =>{
       console.log("error", err);
     });
     this.reser.traerLocales()
       .then(data =>{
         this.locales = data;
-        console.log("Locales", this.locales);
+        //console.log("Locales", this.locales);
       }).catch(err =>{
         console.log("error", err);
       });
